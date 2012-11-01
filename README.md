@@ -1,4 +1,4 @@
 ExplorerCat
 ===========
 
-ExplorerCat source
+ExplorerCat project source 
