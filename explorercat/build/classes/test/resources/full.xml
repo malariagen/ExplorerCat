@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <catalog_1_chromosome __id="1" length="1000" name="MAL1"/>
+  <catalog_1_chromosome __id="2" length="2000" name="MAL2"/>
+  <catalog_1_chromosome __id="3" length="3000" name="MAL3"/>
+  <catalog_1_chromosome_dictionary id="1" name="length" description="Length of the chromosome" minimum_value="0.0" type="INTEGER"/>
+  <catalog_1_chromosome_dictionary id="2" name="name" description="Name of the chromosome" type="STRING" allowed_values="MAL2,MAL3,MAL1"/>
+  <catalog_1_chromosome_stats attribute_name="length" COUNT="3" MIN="1000.0" MAX="3000.0" STDDEV="1000.0" VAR="6000.0" SUM="6000.0" FIRST_QUARTILE="2000.0" MEDIAN="3000.0" THIRD_QUARTILE="3000.0" AVG="2000.0"/>
+  <catalog_1_chromosome_stats attribute_name="name"/>
+  <catalog_1_entities id="1" name="gene" description="Genes of the test genome"/>
+  <catalog_1_entities id="2" name="snp" description="SNPs of the test genome"/>
+  <catalog_1_entities id="3" name="chromosome" description="Chromosomes of the test genome"/>
+  <catalog_1_gene __id="1" name="GEN_1A" length="100" chromosome="MAL1"/>
+  <catalog_1_gene __id="2" name="GEN_1B" length="101" chromosome="MAL1"/>
+  <catalog_1_gene __id="3" name="GEN_1C" length="102" chromosome="MAL1"/>
+  <catalog_1_gene __id="4" name="GEN_3A" length="300" chromosome="MAL3"/>
+  <catalog_1_gene __id="5" name="GEN_3B" length="301" chromosome="MAL3"/>
+  <catalog_1_gene __id="6" name="GEN_2A" length="200" chromosome="MAL2"/>
+  <catalog_1_gene_dictionary id="1" name="name" description="Gene name" type="STRING"/>
+  <catalog_1_gene_dictionary id="2" name="length" description="Length of the gene" minimum_value="0.0" type="INTEGER"/>
+  <catalog_1_gene_dictionary id="3" name="chromosome" description="Chromosome that contains the Gene" type="STRING" entity_referenced="chromosome" attribute_referenced="name" allowed_values="MAL2,MAL3,MAL1"/>
+  <catalog_1_gene_stats attribute_name="name"/>
+  <catalog_1_gene_stats attribute_name="length" COUNT="6" MIN="100.0" MAX="301.0" STDDEV="98.051" VAR="1104.0" SUM="1104.0" FIRST_QUARTILE="102.0" MEDIAN="250.0" THIRD_QUARTILE="301.0" AVG="184.0"/>
+  <catalog_1_gene_stats attribute_name="chromosome"/>
+  <catalog_1_snp __id="1" location="100" mutation="A" chromosome="MAL1" gene="GEN_1A"/>
+  <catalog_1_snp __id="2" location="101" mutation="T" chromosome="MAL1" gene="GEN_1B"/>
+  <catalog_1_snp __id="3" location="102" mutation="C" chromosome="MAL1" gene="GEN_1C"/>
+  <catalog_1_snp __id="4" location="200" mutation="A" chromosome="MAL2" gene="GEN_2A"/>
+  <catalog_1_snp __id="5" location="201" mutation="T" chromosome="MAL2" gene="GEN_2A"/>
+  <catalog_1_snp __id="6" location="202" mutation="C" chromosome="MAL2" gene="GEN_2A"/>
+  <catalog_1_snp __id="7" location="300" mutation="A" chromosome="MAL3" gene="GEN_3A"/>
+  <catalog_1_snp __id="8" location="301" mutation="T" chromosome="MAL3" gene="GEN_3B"/>
+  <catalog_1_snp __id="9" location="302" mutation="G" chromosome="MAL3" gene="GEN_3A"/>
+  <catalog_1_snp_dictionary id="1" name="location" description="Coordinates of the SNP in the chromosome" minimum_value="0.0" type="INTEGER"/>
+  <catalog_1_snp_dictionary id="2" name="mutation" description="SNP allele" type="STRING" allowed_values="T,G,A,C"/>
+  <catalog_1_snp_dictionary id="3" name="chromosome" description="Chromosome that contains the SNP" type="STRING" entity_referenced="chromosome" attribute_referenced="name" allowed_values="MAL2,MAL3,MAL1"/>
+  <catalog_1_snp_dictionary id="4" name="gene" description="Gene that contains the SNP" type="STRING" entity_referenced="gene" attribute_referenced="name"/>
+  <catalog_1_snp_stats attribute_name="location" COUNT="9" MIN="100.0" MAX="302.0" STDDEV="86.6069" VAR="1809.0" SUM="1809.0" FIRST_QUARTILE="102.0" MEDIAN="202.0" THIRD_QUARTILE="301.0" AVG="201.0"/>
+  <catalog_1_snp_stats attribute_name="mutation"/>
+  <catalog_1_snp_stats attribute_name="chromosome"/>
+  <catalog_1_snp_stats attribute_name="gene"/>
+  <catalogs id="1" name="Test Catalog" release_date="2011-06-23" version="test-1.0" description="Test catalog for explorercat"/>
+  <news id="1" date="2011-06-13" content="Sed tincidunt tempor rutrum. Suspendisse aliquet iaculis quam" user_id="1"/>
+  <news id="2" date="2011-06-13" content="Donec pulvinar sagittis magna at dignissim." user_id="1"/>
+  <news id="4" date="2011-06-13" content="Nunc mollis, metus eget sollicitudin ultricies" user_id="1"/>
+  <news id="5" date="2011-06-13" content="magna elementum magna rhoncus vitae ultricies nisi blandit" user_id="2"/>
+  <plugin_hashes/>
+  <users id="1" name="jack" email="jj10@test.sanger.ac.uk" password="jj10" is_admin="true"/>
+  <users id="2" name="cinzia" email="cm10@test.sanger.ac.uk" password="cm10" is_admin="true"/>
+</dataset>

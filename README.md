@@ -1,6 +1,5 @@
 ExplorerCat
 ===========
 
-ExplorerCat project source 
-
+ExplorerCat project source - Not for public release yet
  

@@ -1,0 +1,264 @@
+/***********************************************************************
+	__PopGen_Explorer css
+*jQuery UI Theme roller created using MalariaGen colour layout http://jqueryui.com/themeroller/
+***********************************************************************/
+.data-release {
+	margin: 20px 0 20px 0;
+}
+
+.data-release label {
+	font-size: 12pt;
+	color: #050490;
+	font-weight: bold;
+}
+
+#tabs,#tabs-1,#tabs-2,#tabs-3,#tabs-4 {
+	font-size: 9.5pt !important;
+	font-family: Verdana, Arial, sans-serif !important;
+}
+
+#tabs-1,#tabs-2,#tabs-3,#tabs-4 {
+	padding: 10px 5px 20px 5px;
+}
+
+.tab-block-left,.tab-block-right {
+	margin-top: 10px;
+}
+
+.tab-block-left {
+	width: 740px;
+	padding-left: 5px;
+}
+
+.tab-block-right {
+	width: 125px;
+	margin-left: 10px;
+	background-color: #FFA400;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.tab-block-left-top,.tab-block-left-middle,.tab-block-left-bottom {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.tab-block-left label {
+	text-align: left;
+	font-size: 9.5pt !important;
+	font-family: Verdana, Arial, sans-serif !important;
+}
+
+.tab-block-left select {
+	text-align: left;
+	font-size: 9.5pt !important;
+	font-family: Verdana, Arial, sans-serif !important;
+}
+
+.tab-block-left select option {
+	text-align: left;
+	font-size: 9.5pt !important;
+	font-family: Verdana, Arial, sans-serif !important;
+}
+
+.tab-block-left input {
+	text-align: left;
+	font-size: 9.5pt !important;
+	font-family: Verdana, Arial, sans-serif !important;
+	width: 40px;
+}
+
+.tab-block-left textarea {
+	text-align: left;
+	font-size: 9.5pt !important;
+	font-family: Verdana, Arial, sans-serif !important;
+}
+
+.tab-block-left,.tab-block-right p {
+	text-align: left;
+	font-size: 9.5pt !important;
+	font-family: Verdana, Arial, sans-serif;
+}
+
+.tab-block-right p {
+	padding-left: 7px;
+}
+
+.tab-block-right p a {
+	line-height: 20px;
+	color: #050490;
+	text-decoration: underline;
+	color: #050490;
+}
+
+.tab-block-right p a:hover {
+	color: #050490;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+#alleleFrequencyLabel {
+	padding-left: 91px;
+}
+
+#searchByPopulation {
+	width: 120px;
+	margin-top: 10px;
+	font-weight: bold;
+	background-color: #d8d8d8;
+	border: solid 2px silver;
+	text-align: center;
+	padding: 10px;
+	cursor: pointer;
+}
+
+#searchByPopulation:hover {
+	background-color: #ffa800;
+}
+
+#geneInput {
+	width: 300px;
+	margin-top: 10px;
+	text-align: left;
+}
+
+#searchByGene {
+	float: left;
+	font-weight: bold;
+	width: 120px;
+	background-color: #d8d8d8;
+	border: solid 2px silver;
+	text-align: center;
+	padding: 10px;
+	cursor: pointer;
+	margin-left: 20px;
+}
+
+#searchByGene:hover {
+	background-color: #ffa800;
+}
+
+#preDefinedGenes p {
+	text-align: left;
+}
+
+#startPosition,#endPosition {
+	width: 125px;
+	text-align: left;
+}
+
+#startPosition {
+	margin-right: 10px;
+}
+
+#searchByRegion {
+	width: 120px;
+	margin-top: 20px;
+	font-weight: bold;
+	background-color: #d8d8d8;
+	border: solid 2px silver;
+	text-align: center;
+	padding: 10px;
+	cursor: pointer;
+}
+
+#searchByRegion:hover {
+	background-color: #ffa800;
+}
+
+.buttonContainer {
+	width: 325px;
+	height: 60px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+}
+
+.helpTooltip {
+	max-width: 45%;
+}
+
+#addConditionButton {
+	font-weight: bold;
+	margin-top: 20px;
+	width: 120px;
+	background-color: #d8d8d8;
+	border: solid 2px silver;
+	text-align: center;
+	float: left;
+	padding: 10px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+#addConditionButton:hover {
+	background-color: #ffa800;
+}
+
+#executeQueryButton {
+	font-weight: bold;
+	margin-top: 20px;
+	width: 125px;
+	background-color: #d8d8d8;
+	border: solid 2px silver;
+	text-align: center;
+	float: left;
+	padding: 10px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+#executeQueryButton:hover {
+	background-color: #ffa800;
+}
+
+#searchStatus {
+	margin: 20px 0 20px 0;
+	font-size: 9.5pt !important;
+	font-family: Verdana, Arial, sans-serif !important;
+}
+
+#multipleResults {
+	width: 600px;
+	font-size: 10pt !important;
+	font-family: Verdana, Arial, sans-serif !important;
+	font-size: 10pt !important;
+}
+
+#multipleResults p {
+	color: red;
+}
+
+#tableOptionsContainer {
+	font-size: 9pt;
+	font-family: Verdana, Arial, sans-serif !important;
+}
+
+#tableOptionsContainer span {
+	margin-right: 10px;
+	font-size: 9pt;
+	font-family: Verdana, Arial, sans-serif !important;
+}
+
+#finalResults {
+	font-size: 10pt !important;
+	font-family: Verdana, Arial, sans-serif !important;
+}
+
+#exportFileLink {
+	color: #050490;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 8px;
+	font-style: italic;
+	font-weight: bold;
+}
+
+#exportFileLink:hover {
+	color: #FFA400;
+	cursor: pointer;
+}
+
+#error {
+	color: red;
+}

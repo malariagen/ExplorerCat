@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<project default="junit-test" name="Junit test files" basedir="../..">
+	<description>Test junit files.</description>
+	<property name="src" value="${basedir}/src" />
+	<property name="lib" value="${basedir}/WebContent/WEB-INF/lib" />
+	<property name="classes" value="${basedir}/build/classes" />
+
+	<path id="junit.test.classpath">
+	  <pathelement location="${classes}" />
+	  <pathelement location="${lib}/junit-4.8.2.jar" />
+	  <fileset dir="${lib}">
+	    <include name="**/*.jar"/>
+	  </fileset>
+	</path>
+	
+	<target name="junit-test">
+		<junit printsummary="yes" haltonerror="yes" haltonfailure="yes" fork="yes">
+			<formatter type="plain" usefile="false"/>
+			<!--name could  be a single test or a suite -->
+			<!--test name="test.java.net.explorercat.util.misc.TestHexCodeObfuscator" /-->
+			<test name="test.java.net.explorercat.util.misc.SuiteUtilMisc" />
+			<classpath refid="junit.test.classpath" />
+		</junit>
+	</target>
+</project>

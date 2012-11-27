@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<project default="create_new_file" basedir="../..">
+	<import file="load-config-properties.xml" />
+	<import file="check-all-substitution.xml" />
+	<import file="copy-file-replace-tokens.xml" />
+
+	<target name="create_new_file" depends="createPropertiesFile, check_if_all_vars_are_set" if="explorercatfile.exists">
+		<echo message="${basedir}" />
+		<echo message="All files are created properly." />
+	</target>
+
+</project>

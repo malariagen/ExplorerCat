@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!-- I modified this ant with parameters. See document on Apache Tomcat. Section: Deployer client -->
+<project name="Deployer" basedir="../..">
+	<import file="load-config-properties.xml" />
+
+	<target name="prepareExecution" depends="readProperties">
+		<!-- Configure the folder and context path for this application -->
+		<property name="webapp.path" value="${config.tomcat.path}/webapps${config.WEBAPPPATH}" />
+
+		<path id="deployer.classpath">
+			<fileset dir="${config.tomcat.deployerpath}/lib">
+				<include name="*.jar" />
+			</fileset>
+		</path>
+
+		<!-- Configure the custom Ant tasks for the Manager application -->
+		<taskdef resource="org/apache/catalina/ant/catalina.tasks" classpathref="deployer.classpath" />
+	</target>
+
+	<!-- Executable Targets -->
+	<target name="deploy" description="Deploy web application" depends="prepareExecution">
+		<deploy url="${config.tomcat.url}" username="${config.tomcat.username}"
+            password="${config.tomcat.password}" path="${config.WEBAPPPATH}" war="${webapp.path}.war"
+            update="true" />
+	</target>
+
+	<target name="undeploy" description="Undeploy web application" depends="prepareExecution">
+		<undeploy url="${config.tomcat.url}" username="${config.tomcat.username}"
+            password="${config.tomcat.password}" path="${config.WEBAPPPATH}" />
+	</target>
+
+	<!-- Webapp lifecycle control -->
+	<target name="start" description="Start web application" depends="prepareExecution">
+		<start url="${config.tomcat.url}" username="${config.tomcat.username}"
+            password="${config.tomcat.password}" path="${config.WEBAPPPATH}" />
+	</target>
+	<target name="reload" description="Reload web application" depends="prepareExecution">
+		<reload url="${config.tomcat.url}" username="${config.tomcat.username}"
+            password="${config.tomcat.password}" path="${config.WEBAPPPATH}" />
+	</target>
+	<target name="stop" description="Stop web application" depends="prepareExecution">
+		<stop url="${config.tomcat.url}" username="${config.tomcat.username}" password="${config.tomcat.password}"
+            path="${config.WEBAPPPATH}" />
+	</target>
+
+	<!-- Check whether Tomcat is running -->
+	<target name="check-tomcat" description="Check whether Tomcat is running">
+		<echo message="Checking whether Tomcat is running" />    
+		<condition property="config.tomcat.server" else="localhost">
+            <isset property="config.tomcat.server"/>
+        </condition>
+        <condition property="config.tomcat.port" else="8080">
+            <isset property="config.tomcat.port"/>
+        </condition>
+        <echo message="Server: ${config.tomcat.server}  Port:${config.tomcat.port}" />
+		<condition property="tomcat.running">
+			<socket server="${config.tomcat.server}" port="${config.tomcat.port}" />
+		</condition>
+	</target>
+	
+	<target name="tomcat-running" depends="check-tomcat"  unless="tomcat.running">
+		<fail unless="tomcat.running" message="Tomcat is not running!!!"/>
+	</target>
+			
+	<target name="checkWarFile" depends="tomcat-running">
+		<available property="existWarFile" file="${config.tomcat.path}/webapps/ExplorerCat.war" />
+	</target>
+
+	<target name="stopEC" depends="checkWarFile" if="existWarFile">
+		<echo message="Stop and Undeploy" />
+		<stop url="${config.tomcat.url}" username="${config.tomcat.username}" password="${config.tomcat.password}"
+            path="${config.WEBAPPPATH}" />
+		<undeploy url="${config.tomcat.url}" username="${config.tomcat.username}"
+            password="${config.tomcat.password}" path="${config.WEBAPPPATH}" />
+	</target>
+
+	<target name="deployment-EC" depends="prepareExecution, stopEC">
+		<copy file="${basedir}/target/ExplorerCat.war" tofile="${config.tomcat.path}/webapps/ExplorerCat.war" />
+	</target>
+
+</project>

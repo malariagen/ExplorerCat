@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Deploying a Catalog using the API </title>
+
+<script type="text/javascript" src="http://localhost:8080/ExplorerCat/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript">
+	
+// Parameters: catalogPath, translationParameters, readFrameSize, user, password.
+// Output: returnCode, deploymentTimeInSeconds (or errorMessage if returnCode != 1).	
+
+jQuery.getJSON("http://localhost:8080/ExplorerCat/admin/api/deployCatalog?jsoncallback=?",
+{
+	user : "admin",
+	password : "admin",
+	catalogPath : "/home/chinaski/programming/agile_workspace/ExplorerCat/test/keposeda.cat",
+	readFrameSize : 10000
+}, 
+function(response) 
+{
+	if(response["returnCode"] === 0)			 
+		alert("Deployed in " + response["deploymentTimeInSeconds"] + " seconds."); 
+	else
+		alert("Error: " + response["errorMessage"]);	
+}	
+, "json"); 	
+	
+</script>
+		
+
+</head>
+
+<body>
+
+<center>
+	<h1> Deploying catalog... </h1>
+</center>
+
+</body>
+</html>

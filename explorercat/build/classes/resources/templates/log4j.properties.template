@@ -1,0 +1,41 @@
+
+### Configure the root logger to warn and the application and DB loggers to debug ###
+log4j.rootLogger=warn, console
+log4j.logger.net.explorercat=debug, mainLog
+log4j.logger.net.explorercat.util.sql.dataproviders=debug, databaseLog
+log4j.logger.net.explorercat.interceptors=apiLog
+
+### No additivity, we set up the cascade of appender by hand.
+### Different loggers log into different files but all of them output to the console.
+log4j.additivity.logger.net.explorercat=false
+log4j.additivity.net.explorercat.util.sql.dataproviders=false
+
+### Console appender ###
+log4j.appender.console=org.apache.log4j.ConsoleAppender
+log4j.appender.console.Target=System.out
+log4j.appender.console.layout=org.apache.log4j.PatternLayout
+log4j.appender.console.layout.ConversionPattern=[%p] (%t) %d{[dd/MMM HH:mm]} (%F:%M:%L) %m%n%n
+
+### Main log: Rolling file with backup ###
+log4j.appender.mainLog=org.apache.log4j.RollingFileAppender
+log4j.appender.mainLog.File=$ECTEMP_PATH/logs/explorercat-main.log
+log4j.appender.mainLog.MaxFileSize=10MB
+log4j.appender.mainLog.MaxBackupIndex=1
+log4j.appender.mainLog.layout=org.apache.log4j.PatternLayout
+log4j.appender.mainLog.layout.ConversionPattern=[%p] (%t) %d{[dd/MMM HH:mm]} (%F:%M:%L) %m%n%n
+
+### DB Log: Rolling file with backup ###
+log4j.appender.databaseLog=org.apache.log4j.RollingFileAppender
+log4j.appender.databaseLog.File=$ECTEMP_PATH/logs/explorercat-db.log
+log4j.appender.databaseLog.MaxFileSize=10MB
+log4j.appender.databaseLog.MaxBackupIndex=1
+log4j.appender.databaseLog.layout=org.apache.log4j.PatternLayout
+log4j.appender.databaseLog.layout.ConversionPattern=[%p] (%t)  %d{[dd/MMM HH:mm]} (%F:%M:%L) %m%n%n
+
+### API hits Log: Rolling file with backup ###
+log4j.appender.apiLog=org.apache.log4j.RollingFileAppender
+log4j.appender.apiLog.File=$ECTEMP_PATH/logs/explorercat-api.log
+log4j.appender.apiLog.MaxFileSize=25MB
+log4j.appender.apiLog.MaxBackupIndex=10
+log4j.appender.apiLog.layout=org.apache.log4j.PatternLayout
+log4j.appender.apiLog.layout.ConversionPattern= %d{[dd/MMM HH:mm]} %m%n%n

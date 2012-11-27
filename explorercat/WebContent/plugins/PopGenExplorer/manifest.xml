@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE plugin SYSTEM "../manifest.dtd">
+
+<plugin>
+
+	<!-- Metadata : Name and brief description [REQUIRED] -->
+
+	<meta-data>
+		<name>PopGen Explorer</name>
+		<title>Plasmodium falciparum Genetic Variations (SNPs) &amp; Allele
+			Frequencies</title>
+		<description>
+			Query and explore genetic variations found in P. falciparum, and compare frequencies 
+			of different variant forms (alleles) between populations of parasites 
+			from different geographical regions.
+			Results can be exported as a text file (tab separated fields) for off-line analysis.
+		 </description>
+	</meta-data>
+
+	<!-- Required files : view (jsp/html file) and small icon [REQUIRED] -->
+
+	<required-files>
+		<jsp>jsp/pluginview.jsp</jsp>
+		<icon>img/popgen_icon.jpg</icon>   
+	</required-files>
+
+
+	<!-- REQUIRED: List of associated catalogs for which this plugin is available. 
+		This configuration enables a plugin available to either one or more or all 
+		of catalogs. [Database individual catalog Id's OR 'all' for all catalogs] 
+		[REQUIRED] -->
+	<associated-catalogs>
+		<catalog-id>all</catalog-id>
+	</associated-catalogs>
+
+	<!-- Paths that will be available to the view (if JSP file) by means of 
+		the <s:property> tag. They can reference folders or files [OPTIONAL] -->
+
+	<resources>
+		<resource>
+			<name>css</name>
+			<path>css</path>
+		</resource>
+		<resource>
+			<name>pluginJS</name>
+			<path>js/expcat.plugins.PopGenExplorer.js</path>
+		</resource>
+		<resource>
+			<name>picture</name>
+			<path>img/picture.jpg</path>
+		</resource>
+
+	</resources>
+
+	<!-- List of files to be imported (CSS or JS) [OPTIONAL] -->
+
+	<imports>
+		<import>
+			<type>css</type>
+			<path>css/style.css</path>
+		</import>
+	</imports>
+	
+
+	<!-- List of JSON objects to be passed to the JavaScript init function and 
+		name of the function that will be called to initialise the plug-in. When 
+		the plug-in view is loaded, the function is automatically called (if defined), 
+		passing the action parameters and the plug-in configuration values [OPTIONAL] -->
+
+	<javascript-configuration>
+
+		<init-function>
+			expcat.plugins.PopGenExplorer.init   
+		</init-function>
+
+		<json-configuration-object>
+			<catalogs>all</catalogs>
+			<code> {
+					"entityType" : "snp",
+					"UIContainers" :  {
+										tabsContainer: "tabs",
+										dataRelease : "dataReleaseSelect",
+										preDefinedGenes: "preDefinedGenes",
+										multipleResults: "multipleResults",
+									    searchStatus: "searchStatus",
+										queryUIContainerId : "query-delimiter",
+										addConditionButtonId : "addConditionButton",
+										executeQueryButtonId : "executeQueryButton",
+										exportFileContainerId : "exportFileLink",
+									 	tableOptionsContainer: "tableOptionsContainer",
+									  	tableContainer: "tableContainer",
+									  	selectResult : "selectResult"
+								 },
+					"fileExportingFormat" : {
+											  format: "TAB",
+											  description: "tab-delimited"
+											},
+					"dynamicUrlParameters" : {
+										plugin : "pluginName",
+										catalog : "selectedCatalogId",
+										chromosome: "selectedChromosome",
+										startPosition: "chromosomeStartPosition",
+										endPosition: "chromosomeEndPosition"
+					},
+					"UIEvents" : {
+									open_tab :[
+											 { component : "tab1_to_tab4", targetTab : "tabs-4"},
+											 { component : "tab2_to_tab4", targetTab : "tabs-4"},
+											 { component : "tab3_to_tab4", targetTab : "tabs-4"}
+										]
+					},
+					"tableConfiguration" :{
+									width: 898,
+									height : 500,
+									pageSize : 50,
+									tableDomId : 'example'												
+					}
+				}
+			</code>
+		</json-configuration-object>
+
+		<!-- pgv catalog v1 -->
+		<json-configuration-object>
+			<catalogs>Plasmodium Genetic Variation Catalogue (PGV)-2.0.draft</catalogs>			
+			<code>
+				{								 
+					  "canExportData" : true,
+
+					  "queryName" : "popGenExplorerCatalog1UserQuery",
+					 	 				  
+					  "tableColumns" : [ { name : "Chromosome", alias : "Chromosome", width : 100, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer' ] }, 
+										 { name : "Position", alias : "Position", width : 100, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer' ] },
+										 { name : "Gene", alias : "Gene", width : 100, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer' ] },
+										 { name : "AminoAcid", alias : "Amino Acid", width : 125, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer' ] },
+										
+										 { name : "DAF_AFR", alias : "DAF Africa", width : 125, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'blueRenderer' ] },
+										 { name : "DAF_SEA", alias : "DAF South-East Asia", width : 165, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'blueRenderer' ] },
+										 { name : "DAF_PNG", alias : "DAF Papua New Guinea", width : 185, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'blueRenderer' ] },
+										 
+										 { name : "NRAF_AFR", alias : "NRAF Africa", width : 125, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'greenRenderer' ] },
+										 { name : "NRAF_SEA", alias : "NRAF South-East Asia", width : 200, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'greenRenderer' ] },
+										 { name : "NRAF_PNG", alias : "NRAF Papua New Guinea", width : 200, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'greenRenderer' ] },
+					
+										 { name : "MAF_AFR", alias : "MAF Africa", width : 125, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'redRenderer' ] },
+										 { name : "MAF_SEA", alias : "MAF South-East Asia", width : 165, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'redRenderer' ] }, 
+										 { name : "MAF_PNG", alias : "MAF Papua New Guinea", width : 185, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'redRenderer' ] },
+
+										 { name : "Mutation", alias : "Mutation Type", width : 130, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer' ] },
+										 { name : "RefAllele", alias : "Reference Allele", width : 150, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'alleleColorer' ] },
+										 { name : "NonrefAllele", alias : "Non-ref Allele", width : 130, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'alleleColorer' ] }, 
+										 { name : "DerivedAllele", alias : "Derived Allele", width : 130, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'alleleColorer' ] }, 
+										 { name : "AncestralAllele", alias : "Ancestral Allele", width : 130, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'alleleColorer' ] },
+										 { name : "OutgroupAllele", alias : "Outgroup Allele", width : 130, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'alleleColorer' ] },
+										 { name : "PrivateAllele", alias : "Private Allele", width : 130, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'alleleColorer' ] }, 
+										 { name : "PrivatePopulation", alias : "Private Population", width : 160, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer' ] }, 
+										 										  
+										 { name : "Gene", alias : "Gene ID", width : 150, sort : true, hide : false, aq : false, renderers : [ 'dashReplacer' ] },
+										 { name : "GeneAliases", alias : "Gene Aliases", width : 200, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer' ] },
+										 { name : "GeneDescription", alias : "Gene Description", width : 300, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer' ] },
+										 { name : "Gene", alias : "Links", width : 200, sort : true, hide : false, aq : false, renderers : [ 'dashReplacer', 'addLinks' ] }									 										 									    
+										],					  					
+					  	"cellRenderers": { 
+						  					"redRenderer" : {name: "colorRenderer", startLimit: 0, endLimit: 1, startColor : [255,255,255], endColor : [255,73,73]},
+						  					"greenRenderer" : {name: "colorRenderer", startLimit: 0, endLimit: 1, startColor : [255,255,255], endColor : [73,255,73]},
+						  					"blueRenderer" : {name: "colorRenderer", startLimit: 0, endLimit: 1, startColor : [255,255,255], endColor : [73,73,255]},
+						  					"alleleColorer" : {name: 'stringColorer', colors: {"A": "blue", "T": "purple", "G": "red", "C": "green", "-": "silver"}},
+						  					"dashReplacer" : {name: 'stringReplacer', stringsToReplace: ['null','NaN'], replacementStrings: ['-','-']},
+						  					"tooltip": {name: 'tooltip'},
+											"arrayStripper": {name:'arrayStripper'},
+											"addLinks": {name:'addLinks'}
+										 },									
+						"columnGroups" : [
+										{
+											name : 'SNP Location',
+											showHide : false,
+											columns : ["Chromosome", "Position", "Gene", "Amino Acid"]
+										},									
+										{
+											name : 'Derived Allele Frequency',
+											showHide : true,
+											columns : ["DAF Africa", "DAF South-East Asia", "DAF Papua New Guinea"]
+										},
+									    {
+											name : 'Non-reference Allele Frequency',
+											showHide : true,
+											columns : ["NRAF Africa", "NRAF South-East Asia", "NRAF Papua New Guinea"]
+										},	
+									    {
+											name : 'Minor Allele Frequency',
+											showHide : true,
+											columns : ["MAF Africa", "MAF South-East Asia", "MAF Papua New Guinea"]
+										},
+										{
+											name : 'SNP Details',
+											showHide : true,
+											columns : ["Mutation Type", "Reference Allele", "Non-ref Allele", "Derived Allele", "Ancestral Allele", "Outgroup Allele","Private Allele","Private Population"]
+										},
+										{
+											name : 'Gene Information',
+											showHide : true,
+											columns : ["Gene ID", "Gene Aliases", "Gene Description", "Links"]
+										}										
+								],
+						"UIOptions" : {
+									  "searchByPopulation" : {
+														alleleFrequencies : {
+																	from: "alleleFrequencyFrom",
+																	to: "alleleFrequencyTo",
+																	options: [
+																				{ name : "MAF", alias : "Minor Allele Frequency" },
+																				{ name : "DAF", alias : "Derived Allele Frequency" },
+																				{ name : "NRAF", alias : "Non Reference Allele Frequency"}
+																	 ]
+														},
+														populations : {
+																	from: "populationFrom",
+																	to: "populationTo",
+																	options: [
+																				{ name : "AFR", alias : "Africa" },
+																				{ name : "SEA", alias : "South-East Asia" },
+																				{ name : "PNG", alias : "Papua New Guinea" }
+																	 ]
+														},	
+														operators : {
+																	from: "operatorFrom",
+																	to: "operatorTo",
+																	options: [
+																				{ name : "&gt;", alias : "greater than" },
+																				{ name : "&lt;", alias : "less than" }
+																	]
+														},
+														inputValues : {
+																	from: "valueFrom",
+																	to: "valueTo",
+																	options: { minimum : 0,
+																			   maximum : 1
+																	 }
+														},
+														button : "searchByPopulation",
+														defaultOptions : {
+																	alleleFrequencyFrom : "DAF",
+																	populationFrom : "SEA",
+																	operatorFrom :"&gt;",
+																	valueFrom: "0.9",	
+																	alleleFrequencyTo : "DAF",
+																	populationTo : "AFR",
+																	operatorTo :"&lt;",	
+																	valueTo: "0.1"																
+														}												
+										},
+										"searchByGenes" : {
+														inputValue: "geneInput",
+														genes : [
+																{ name : "pfcrt", alias : "pfcrt" },
+																{ name : "pfmdr1", alias : "pfmdr1" },
+																{ name : "dhfr", alias : "dhfr" },
+																{ name : "dhfs", alias : "dhfs" },
+																{ name : "eba175", alias : "eba175" },
+																{ name : "rh5", alias : "rh5" }															
+															],
+														button : "searchByGene",	
+														cql : "GeneInfo contains 'SearchKey'",
+														cqlReplace : "SearchKey",
+														distinctResultColumns : " [ Gene AS 'Gene', GeneInfo AS 'GeneInfo'] ",
+														geneInfoDelimiter : ";"
+										},
+										"searchByRegion" : {
+														chromosomeId: "chromosome",
+														inputValues : {
+																	from: "startPosition",
+																	to: "endPosition",
+																	defaultOptions : {
+																			minimum : 1,
+																			maximum : 10000000
+																	}
+															},														
+														chromosomes : [
+																{ name : "MAL1", alias : "MAL1", minimum : 1, maximum : 643292  },
+																{ name : "MAL2", alias : "MAL2", minimum : 1, maximum : 947102  },
+																{ name : "MAL3", alias : "MAL3", minimum : 1, maximum : 1060087  },
+																{ name : "MAL4", alias : "MAL4", minimum : 1, maximum : 1204112  },
+																{ name : "MAL5", alias : "MAL5", minimum : 1, maximum : 1343552  },
+																{ name : "MAL6", alias : "MAL6", minimum : 1, maximum : 1418244  },
+																{ name : "MAL7", alias : "MAL7", minimum : 1, maximum : 1501717  },
+																{ name : "MAL8", alias : "MAL8", minimum : 1, maximum : 1419563  },
+																{ name : "MAL9", alias : "MAL9", minimum : 1, maximum : 1541723  },
+																{ name : "MAL10", alias : "MAL10", minimum : 1, maximum : 1687655  },
+																{ name : "MAL11", alias : "MAL11", minimum : 1, maximum : 2038337  },
+																{ name : "MAL12", alias : "MAL12", minimum : 1, maximum : 2271478  },
+																{ name : "MAL13", alias : "MAL13", minimum : 1, maximum : 2895605  },
+																{ name : "MAL14", alias : "MAL14", minimum : 1, maximum : 3291871  }
+														],
+														button : "searchByRegion"
+									   }
+								}												
+					}				            	    			
+			</code>			
+		</json-configuration-object>
+		
+		
+		
+			<!-- pgv catalog v1 -->
+		<json-configuration-object>
+			<catalogs> Plasmodium Genetic Variation Catalogue (PGV)-1.0 </catalogs>			
+			<code>
+				{								 
+					  "canExportData" : true,
+
+					  "queryName" : "popGenExplorerCatalog1UserQuery",
+					 	 				  
+					  "tableColumns" : [ { name : "Chromosome", alias : "Chromosome", width : 100, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer' ] }, 
+										 { name : "Position", alias : "Position", width : 100, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer' ] },
+										 { name : "Gene", alias : "Gene", width : 100, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer' ] },
+										 { name : "AminoAcid", alias : "Amino Acid", width : 125, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer' ] },
+										
+										 { name : "DAF_AFR", alias : "DAF Africa", width : 125, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'blueRenderer' ] },
+										 { name : "DAF_SEA", alias : "DAF South-East Asia", width : 165, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'blueRenderer' ] },
+										 { name : "DAF_PNG", alias : "DAF Papua New Guinea", width : 185, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'blueRenderer' ] },
+										 
+										 { name : "NRAF_AFR", alias : "NRAF Africa", width : 125, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'greenRenderer' ] },
+										 { name : "NRAF_SEA", alias : "NRAF South-East Asia", width : 200, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'greenRenderer' ] },
+										 { name : "NRAF_PNG", alias : "NRAF Papua New Guinea", width : 200, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'greenRenderer' ] },
+					
+										 { name : "MAF_AFR", alias : "MAF Africa", width : 125, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'redRenderer' ] },
+										 { name : "MAF_SEA", alias : "MAF South-East Asia", width : 165, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'redRenderer' ] }, 
+										 { name : "MAF_PNG", alias : "MAF Papua New Guinea", width : 185, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'redRenderer' ] },
+
+										 { name : "Mutation", alias : "Mutation Type", width : 130, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer' ] },
+										 { name : "RefAllele", alias : "Reference Allele", width : 150, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'alleleColorer' ] },
+										 { name : "NonrefAllele", alias : "Non-ref Allele", width : 130, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'alleleColorer' ] }, 
+										 { name : "DerivedAllele", alias : "Derived Allele", width : 130, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'alleleColorer' ] }, 
+										 { name : "AncestralAllele", alias : "Ancestral Allele", width : 130, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'alleleColorer' ] },
+										 { name : "OutgroupAllele", alias : "Outgroup Allele", width : 130, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'alleleColorer' ] },
+										 { name : "PrivateAllele", alias : "Private Allele", width : 130, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer', 'alleleColorer' ] }, 
+										 { name : "PrivatePopulation", alias : "Private Population", width : 160, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer' ] }, 
+										 										  
+										 { name : "Gene", alias : "Gene ID", width : 150, sort : true, hide : false, aq : false, renderers : [ 'dashReplacer' ] },
+										 { name : "GeneAliases", alias : "Gene Aliases", width : 200, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer' ] },
+										 { name : "GeneDescription", alias : "Gene Description", width : 300, sort : true, hide : false, aq : true, renderers : [ 'dashReplacer' ] },
+										 { name : "Gene", alias : "Links", width : 200, sort : true, hide : false, aq : false, renderers : [ 'dashReplacer', 'addLinks' ] }									 										 									    
+										],					  					
+					  	"cellRenderers": { 
+						  					"redRenderer" : {name: "colorRenderer", startLimit: 0, endLimit: 1, startColor : [255,255,255], endColor : [255,73,73]},
+						  					"greenRenderer" : {name: "colorRenderer", startLimit: 0, endLimit: 1, startColor : [255,255,255], endColor : [73,255,73]},
+						  					"blueRenderer" : {name: "colorRenderer", startLimit: 0, endLimit: 1, startColor : [255,255,255], endColor : [73,73,255]},
+						  					"alleleColorer" : {name: 'stringColorer', colors: {"A": "blue", "T": "purple", "G": "red", "C": "green", "-": "silver"}},
+						  					"dashReplacer" : {name: 'stringReplacer', stringsToReplace: ['null','NaN'], replacementStrings: ['-','-']},
+						  					"tooltip": {name: 'tooltip'},
+											"arrayStripper": {name:'arrayStripper'},
+											"addLinks": {name:'addLinks'}
+										 },									
+						"columnGroups" : [
+										{
+											name : 'SNP Location',
+											showHide : false,
+											columns : ["Chromosome", "Position", "Gene", "Amino Acid"]
+										},									
+										{
+											name : 'Derived Allele Frequency',
+											showHide : true,
+											columns : ["DAF Africa", "DAF South-East Asia", "DAF Papua New Guinea"]
+										},
+									    {
+											name : 'Non-reference Allele Frequency',
+											showHide : true,
+											columns : ["NRAF Africa", "NRAF South-East Asia", "NRAF Papua New Guinea"]
+										},	
+									    {
+											name : 'Minor Allele Frequency',
+											showHide : true,
+											columns : ["MAF Africa", "MAF South-East Asia", "MAF Papua New Guinea"]
+										},
+										{
+											name : 'SNP Details',
+											showHide : true,
+											columns : ["Mutation Type", "Reference Allele", "Non-ref Allele", "Derived Allele", "Ancestral Allele", "Outgroup Allele","Private Allele","Private Population"]
+										},
+										{
+											name : 'Gene Information',
+											showHide : true,
+											columns : ["Gene ID", "Gene Aliases", "Gene Description", "Links"]
+										}										
+								],
+						"UIOptions" : {
+									  "searchByPopulation" : {
+														alleleFrequencies : {
+																	from: "alleleFrequencyFrom",
+																	to: "alleleFrequencyTo",
+																	options: [
+																				{ name : "MAF", alias : "Minor Allele Frequency" },
+																				{ name : "DAF", alias : "Derived Allele Frequency" },
+																				{ name : "NRAF", alias : "Non Reference Allele Frequency"}
+																	 ]
+														},
+														populations : {
+																	from: "populationFrom",
+																	to: "populationTo",
+																	options: [
+																				{ name : "AFR", alias : "Africa" },
+																				{ name : "SEA", alias : "South-East Asia" },
+																				{ name : "PNG", alias : "Papua New Guinea" }
+																	 ]
+														},	
+														operators : {
+																	from: "operatorFrom",
+																	to: "operatorTo",
+																	options: [
+																				{ name : "&gt;", alias : "greater than" },
+																				{ name : "&lt;", alias : "less than" }
+																	]
+														},
+														inputValues : {
+																	from: "valueFrom",
+																	to: "valueTo",
+																	options: { minimum : 0,
+																			   maximum : 1
+																	 }
+														},
+														button : "searchByPopulation",
+														defaultOptions : {
+																	alleleFrequencyFrom : "DAF",
+																	populationFrom : "SEA",
+																	operatorFrom :"&gt;",
+																	valueFrom: "0.9",	
+																	alleleFrequencyTo : "DAF",
+																	populationTo : "AFR",
+																	operatorTo :"&lt;",	
+																	valueTo: "0.1"																
+														}												
+										},
+										"searchByGenes" : {
+														inputValue: "geneInput",
+														genes : [
+																{ name : "pfcrt", alias : "pfcrt" },
+																{ name : "pfmdr1", alias : "pfmdr1" },
+																{ name : "dhfr", alias : "dhfr" },
+																{ name : "dhfs", alias : "dhfs" },
+																{ name : "eba175", alias : "eba175" },
+																{ name : "rh5", alias : "rh5" }
+															],
+														button : "searchByGene",	
+														cql : "GeneInfo contains 'SearchKey'", 
+														cqlReplace : "SearchKey",
+														distinctResultColumns : " [ Gene AS 'Gene', GeneInfo AS 'GeneInfo'] ",
+														geneInfoDelimiter : ";"
+										},
+										"searchByRegion" : {
+														chromosomeId: "chromosome",
+														inputValues : {
+																	from: "startPosition",
+																	to: "endPosition",
+																	defaultOptions : {
+																			minimum : 1,
+																			maximum : 10000000
+																	}
+															},														
+														chromosomes : [
+																{ name : "MAL1", alias : "MAL1", minimum : 1, maximum : 643292  },
+																{ name : "MAL2", alias : "MAL2", minimum : 1, maximum : 947102  },
+																{ name : "MAL3", alias : "MAL3", minimum : 1, maximum : 1060087  },
+																{ name : "MAL4", alias : "MAL4", minimum : 1, maximum : 1204112  },
+																{ name : "MAL5", alias : "MAL5", minimum : 1, maximum : 1343552  },
+																{ name : "MAL6", alias : "MAL6", minimum : 1, maximum : 1418244  },
+																{ name : "MAL7", alias : "MAL7", minimum : 1, maximum : 1501717  },
+																{ name : "MAL8", alias : "MAL8", minimum : 1, maximum : 1419563  },
+																{ name : "MAL9", alias : "MAL9", minimum : 1, maximum : 1541723  },
+																{ name : "MAL10", alias : "MAL10", minimum : 1, maximum : 1687655  },
+																{ name : "MAL11", alias : "MAL11", minimum : 1, maximum : 2038337  },
+																{ name : "MAL12", alias : "MAL12", minimum : 1, maximum : 2271478  },
+																{ name : "MAL13", alias : "MAL13", minimum : 1, maximum : 2895605  },
+																{ name : "MAL14", alias : "MAL14", minimum : 1, maximum : 3291871  }
+														],
+														button : "searchByRegion"
+									   }
+								}												
+					}				            	    			
+			</code>			
+		</json-configuration-object>
+		
+	</javascript-configuration>
+
+</plugin>

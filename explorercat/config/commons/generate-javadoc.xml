@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<project default="create-javadoc" name="Javadoc documents" basedir="../..">
+	<description>Generate Javadoc</description>
+
+	<target name="create-javadoc">
+		<delete dir="${basedir}/docs/apidocs"/>
+		<mkdir dir="${basedir}/docs/apidocs"/>
+		<javadoc  access="public"
+			destdir="${basedir}/docs/apidocs" author="true" version="true" use="true" windowtitle="net.explorercat" verbose="true">
+			<fileset dir="${basedir}/src" defaultexcludes="yes">
+				<include name="**/*.java" />
+				<exclude name="test/**"/>
+			</fileset>
+		</javadoc>
+		<echo message="===== JAVADOC TASK COMPLETED ${line.separator} ${basedir}/docs/apidocs ${line.separator}=====" />
+	</target>
+</project>

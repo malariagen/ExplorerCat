@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<project name="Extend properties file" basedir="../..">
+	<import file="copy-file-replace-tokens.xml" />
+	<import file="check-all-substitution.xml" />
+		
+
+	<target name="compileExtededTask" description="Compile source code.">
+		<delete>
+		    <fileset dir="${basedir}/config/ant/task/addon/build" includes="**/*.class"/>
+		  </delete>
+		<property name="dir.build" location="${basedir}/config/ant/task/addon/build"/>
+		<property name="dir.src" location="${basedir}/config/ant/task/addon/src"/>
+
+		<path id="classpath.project">
+			<pathelement path="${dir.build}"/>
+		</path>
+
+		<javac srcdir="${dir.src}" destdir="${dir.build}" includeantruntime="true">
+			<classpath refid="classpath.project"/>
+			<compilerarg value="-Xlint:unchecked"/> 
+		</javac>
+
+	</target>
+
+	<target name="extend" depends="compileExtededTask">
+		<taskdef name="extendProperty"
+            classname="ExtendProperties"
+            classpath="${dir.build}"/>
+		<extendProperty baseFile="${basedir}/src/explorercat-global.properties"
+  	               overrideFile="${basedir}/src/resources/templates/explorercat-global.properties.template"
+  	               destFile="${basedir}/src/explorercat-global.properties" />
+		<extendProperty baseFile="${basedir}/src/log4j.properties"
+	  	               overrideFile="${basedir}/src/resources/templates/log4j.properties.template"
+	  	               destFile="${basedir}/src/log4j.properties" />	
+	</target>
+
+	<target name="extendECPropertiesFile" depends="compileExtededTask, extend, replaceToken, check_if_all_vars_are_set" >
+		<echo message="Done! Extending existed files properties" />
+	</target>
+</project>
+

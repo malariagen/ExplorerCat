@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<project default="readProperties" name="Read Properties File" basedir="../..">
+	<description>Try to read a local/default setting file properties</description>
+
+	<target name="check-local-conf-file" unless="file.exists">
+		<available property="file.exists" file="${basedir}/config/myConfig.properties"/>
+		<property file="${basedir}/config/myConfig.properties" prefix="config"/>
+	</target>
+
+	<target name="check-default-conf-file" unless="file.exists">
+		<available property="file.exists" file="${basedir}/config/default.properties"/>
+		<property name='def_file' value='true' />
+		<property file="${basedir}/config/default.properties" prefix="config"/>
+	</target>
+
+	<target name="check-conf-file" depends="check-local-conf-file,check-default-conf-file" unless="file.exists">
+		<fail unless="file.exists" message="File config not found. Please check your template."/>
+	</target>
+
+	<target name="readProperties" depends="check-conf-file" if="file.exists">
+		<echo message="Value of settings"/>
+		<echo message="${config.GENERICPATH}"/>
+		<echo message="${config.ECTEMP}"/>
+		<echo message="${config.tomcat.server}"/> 
+		<echo message="File properly loaded."/>
+	</target>
+
+</project>
+

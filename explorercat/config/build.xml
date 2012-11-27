@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<project default="Main" basedir="..">
+	<import file="commons/create-new-file-properties.xml" />
+	<import file="commons/extend-properties-file.xml" />
+
+	<target name="createfilepropertytest">
+		<available property="ECfile.exist" file="${basedir}/src/explorercat-global.properties" />
+	</target>
+
+	<target name="createNewFileProperty" unless="ECfile.exist">
+		<echo message="I'm creating a new files properties" />
+		<antcall target="create_new_file">
+		</antcall>
+	</target>
+
+	<target name="extendExistedPropertiesFile" if="ECfile.exist">
+		<echo message="Extending existed files properties" />
+		<antcall target="extendECPropertiesFile" inheritRefs="true" inheritAll="true">
+		</antcall>
+	</target>
+
+
+	<target name="Main" depends="readProperties, createfilepropertytest,createNewFileProperty,extendExistedPropertiesFile">
+		<echo message="${basedir}" />
+		<echo message="All files are created properly." />
+	</target>
+
+</project>

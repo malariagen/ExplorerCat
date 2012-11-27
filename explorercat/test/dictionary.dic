@@ -1,0 +1,67 @@
+
+{ "dictionary" : {	
+   
+	"entities" : {
+
+		"chromosome" : {
+			"description" : "Chromosomes of the test genome",
+			"properties" : { 
+			"length" : {
+               "minimum" : 0,
+               "type" : "Integer",
+               "description" : "Length of the chromosome"
+            },
+            "name" : {
+               "type" : "String",
+			   "values" : ["MAL1","MAL2","MAL3"],
+               "description" : "Name of the chromosome"
+            }}
+      	},
+
+		"snp" : {
+			"description" : "SNPs of the test genome",
+			"properties" : {
+			   "location" : {
+				"minimum" : 0,
+				"type" : "Integer",
+				"description" : "Coordinates of the SNP in the chromosome"
+			},
+			"mutation" : {
+				"type" : "String",
+				"values" : ["A","T","G","C"],
+				"description" : "SNP allele"
+			},
+			"chromosome" : {
+				"type" : "String",
+				"references" : {"entity" : "chromosome", "property": "name"},
+				"values" : ["MAL1","MAL2","MAL3"],
+				"description" : "Chromosome that contains the SNP"
+			},
+			"gene" : {
+				"type" : "String",
+				"references" : {"entity": "gene", "property": "name"},
+				"description" : "Gene that contains the SNP"
+			}}
+      	},
+
+		"gene" : {
+			"description" : "Genes of the test genome",
+			"properties" : {
+			"name" : {
+				"type" : "String",
+				"description" : "Gene name"
+			},
+			"length" : {
+               "minimum" : 0,
+               "type" : "Integer",
+               "description" : "Length of the gene"
+            },
+			"chromosome" : {
+				"type" : "String",
+				"references" : {"entity" : "chromosome", "property" : "name"},
+				"description" : "Chromosome that contains the Gene"
+			}}
+      	}		
+	}}
+}
+

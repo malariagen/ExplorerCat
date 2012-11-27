@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Testing EC connector </title>
+		<script src="../js/jquery-1.4.2.min.js"></script>
+		<script src="../js/expcat.js"></script>		
+						
+		<script>
+			
+			var connector = new EXPCAT.cqlconnector({catalogId:126, baseURL: "http://localhost:8080/ExplorerCat/"});
+			
+			connector.setupQuery("SELECT FROM snp AS 'snps' WHERE TRUE; Result{snps};",
+			         			function(json){ 
+									connector.getResultData(json.ticketNumber, 
+															json.hashCode, 
+															200, 
+															0, 
+															function(json){})
+					});
+											
+		</script>
+						
+    </head>
+    
+	
+	<body>
+	
+	<h1> Testing ExplorerCat connection libraries </h1>
+		
+	</body>
+	</html>
+	
+	

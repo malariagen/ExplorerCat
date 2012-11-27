@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!-- ############################################################################################################ 
+		Package for public actions (can be accessed by any user). ############################################################################################################ -->
+
+	<package name="public" namespace="/pub" extends="actions-default">
+
+		<!-- The front page shows all the catalogs available and the latest news -->
+
+		<action name="frontPage" class="net.explorercat.actions.pub.FrontPageAction">
+			<result name="success" type="dispatcher"> /jsp/pub/frontpage.jsp </result>
+		</action>
+
+		<!-- Shows an overview of the selected catalog and gives access to the 
+			available plug-ins. -->
+
+		<action name="catalogOverview"
+			class="net.explorercat.actions.pub.CatalogOverviewAction">
+			<result name="success" type="dispatcher"> /jsp/pub/catalogoverview.jsp
+			</result>
+		</action>
+
+		<!-- Renders and configure any plug-in. The plug-in JSP is included in 
+			this view. -->
+
+		<action name="executePlugin" class="net.explorercat.actions.pub.GenericPluginAction">
+			<result name="success" type="dispatcher">/jsp/pub/genericplugin.jsp
+			</result>
+			<result name="error" type="dispatcher">/jsp/pub/pluginnotfound.jsp</result>
+		</action>
+
+		<!-- Download CSV: Downloads a generated CSV file. -->
+
+		<action name="downloadResource"
+			class="net.explorercat.actions.pub.DownloadResourceAction">
+			<result name="success" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="allowCaching">${allowCaching}</param>
+				<param name="contentDisposition">${contentDisposition}</param>
+				<param name="inputName">inputStream</param>
+			</result>
+			<result name="error" type="dispatcher"> /jsp/pub/errorDownload.jsp </result>
+		</action>
+
+		<!-- Download the complete catalogue. -->
+
+		<action name="downloadCatalogue">
+			<result>/jsp/pub/downloadcatalogue.jsp</result>
+		</action>
+
+		<!-- Test page (HTML) -->
+
+		<action name="test">
+			<result>/jsp/test/test.html</result>
+		</action>
+
+
+		<action name="error">
+			<result>/jsp/pub/error404.jsp</result>
+		</action>
+
+		<action name="contactAction" class="net.explorercat.actions.pub.ContactAction"
+			method="execute">
+			<result name="success" type="redirectAction">frontPage</result>
+			<result name="input">/jsp/pub/contact.jsp</result>
+		</action>
+
+		<action name="contactInput" class="net.explorercat.actions.pub.ContactAction"
+			method="input">
+			<result name="input">/jsp/pub/contact.jsp</result>
+		</action>
+
+
+	</package>
+</struts>

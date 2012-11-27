@@ -1,0 +1,345 @@
+These Modifications are yet to update to SVN ExplorerCat Project
+
+------
+Core:
+------
+1) UPDATED CORE TO ASSOCIATE PLUGINS TO SPECIFIC CATALOGS
+	a) This is possible by asking plugin manifest file to provide "associated-catalogs" tag
+		manifest.dtd:
+				Added REQUIRED "associated-catalogs" tag to manifest.dtd
+				Updated all plugin files with tag: "associated-catalogs"
+				For example:
+					<associated-catalogs>
+						<catalog-id>2</catalog-id>
+					</associated-catalogs>
+				OR for all pluins:	
+					<associated-catalogs>
+						<catalog-id>all</catalog-id>
+					</associated-catalogs>		
+		manifest.xml: Added above configuration to all plugin manifest.xml  files
+		
+				
+	b) PluginBuilder: net.explorercat.plugins
+		added methods: getAllCatalogIds: processPluginAssociatedCatalogs
+	
+	c) Plugin: net.explorercat.plugins
+		look for all occurencess of : asscoatedCatalogs
+		added methods: getAllCatalogIds: processPluginAssociatedCatalogs	
+		
+	d) PluginRegistry: net.explorercat.plugins
+		Updated method: getPlugins to check if plugin-catalog associations				
+
+	e) CatalogOverviewAction: net.explorercat.actions.pub
+		Moved getPlugins code from prepare to execute method
+	
+	f)  TODO: Need to check/ammend if plugin is abstract
+	
+	g)  GenericPluginAction: net.explorercat.actions.pub.GenericPluginAction
+		Added functionality to get ONLY catalogs that are available to this plugin, This provides the functionality to change versions dynamically at plugin page.
+	h)  Added Title TAG to manifest.dtd and updated to all manifest file:
+		manifest.dtd:
+		<!-- Describes the plug-in -->
+		<!-- Added title which will be displayed on view instead of name, useful when titles are long -->
+		<!ELEMENT meta-data ( name, title, description ) >
+		<!ELEMENT name ( #PCDATA ) >
+		<!ELEMENT title ( #PCDATA ) >
+		<!ELEMENT description ( #PCDATA ) >
+
+		Manifest file example:
+		<meta-data>
+		<name>Pre PopGen Explorer</name>
+		<title>Plasmodium falciparum Genetic Variations (SNPs) &amp; Allele
+			Frequencies</title>
+		<description>
+			Query and explore the SNPs present in the catalog (near
+			86K) using a graphical interface to build the query and an
+			interactive table to explore the results. Results can be exported as
+			a text file (tab separated fields) for off-line analysis.
+		 </description>
+	</meta-data>
+		Plugin: net.explorercat.plugins
+		look for all occurencess of : title
+		added methods: setTitle,getTitle	
+		PluginBuilder:
+		added to parse title to method: processPluginMetadata
+		GenericPluginAction:
+		added method: getPluginTitle
+		pluginview.jsp of all manifest files
+		updated 
+		<h1>
+			<!-- <s:property value="pluginName" /> -->
+			${pluginTitle}
+		</h1>
+2) remove currentToken		
+--------
+Plugins
+--------
+1) Plugin file names are all updated from expcat.plugins.CatalogExplorer to more meaning full names (ex: expcat.plugins.SNPExplorer, etc) for EACH PLUGIN: 
+	 -	Rename
+	 -	Update Manifest file to reflect name
+2) added addLinks method to expcat.plugins.TableExplorer.Renderer.js file
+	Also, updated manifest files, to reflect name 'addLinks' render
+	and updated expcat.plugins.TableExplorer.Table.js to add constant and updated columnRenderer method to handle this render	
+3) 	Added jqueryui folder to CSS folder
+	Also, added jquery-uk jquery-cookie to lib/js folder
+4)  JS/dev/expcat.cql.type.js: addded TEXT type 
+5)  Updated expcat.plugins.TableExplorer.Table.js with expcat.plugins.TableExplorer.js content
+	Removed expcat.plugins.TableExplorer.js
+	Renamed expcat.plugins.TableExplorer.Table.js to expcat.plugins.TableExplorer.js
+   expcat.plugins.TableExplorer.Table.js:
+	Added callback event after table loaded, addLinks renderer support, group and columns configurable options for dragable, hidebale.
+	expcat.plugins.TableExplorer.Renderer.js:	addLinks support provided
+6) expcat.plugins.PopGenExplorer:
+	Plugin, css, manifest files updated
+7)  expcat.plugins.SNPExplorer:
+	manifest,JS files updated
+8)  Updated: /js/dev/explorer-lib-generator.sh	
+9)  expcat.plugins.QueryComposerUIManager.js
+	Added relative : true,	
+	helpButton.tooltip({
+				position : "top right",
+				relative : true,
+				opacity : 0.9
+			}); 	
+	
+10) genericPlugin.jsp:
+		Updated from:
+		<%-- Initiliaze the plug-in if an init function has been provided. --%>
+		<s:if test="%{pluginInitFunction != null}">   
+			${pluginInitFunction}(connectors, "${contextPrefix}", actionParameterLookup, universalOptions, localOptions);
+		</s:if>      
+		Updated To:
+		<%-- Initiliaze the plug-in if an init function has been provided. --%>
+		<s:if test="%{pluginInitFunction != null}">
+		               ${pluginInitFunction}(connectors,"<s:url value='/' encode='false'/>", actionParameterLookup, universalOptions, localOptions);
+		</s:if>	
+		
+		
+	Also, jslibs.jsp changes:
+	from:
+		expcat.namespace("expcat.init.buildConnectors");
+		
+	to:
+		expcat.namespace("expcat.init.buildConnectors");
+         url = "<s:url value='/' encode='false'/>"
+         
+    from :
+    	baseURL: "<s:url value='/'/>"	
+    to :
+    	baseURL: url	
+    	
+ 11) Plugin Name modification: for call plugins JPS page
+ 	From:
+ 		<h1>
+			<s:property value="pluginName" />
+			${pluginTitle}
+		</h1>
+	To:
+		<h1>
+			${pluginTitle}
+		</h1>	
+ 
+ 12) Update Generic Plugin [genericplugin.jsp] to set title
+	From: 
+		<head>
+		<title><s:text name="pageTitle.genericTool" /></title>
+	To:
+		<head>
+		<title>${pluginTitle} <s:text name="pageTitle.seperator" /> <s:text
+		name="pageTitle.branding" />
+		</title>
+	Also, added following to application resource properties files (ApplicationResources.properties)
+	pageTitle.seperator =|
+	pageTitle.branding=www.malariagen.net	
+	
+	catalogoverview.jsp
+	From:
+	<title><s:text name="pageTitle.overview" />
+	</title>
+	To:
+	<title><s:text name="pageTitle.overview" />
+		<s:text name="pageTitle.seperator" /> <s:text
+			name="pageTitle.branding" />
+	</title>
+	
+	frontpage.jsp
+	From:
+	<title> <s:text name="pageTitle.frontPage"/> </title>
+	To:
+	<title><s:text name="pageTitle.frontPage" /> <s:text
+		name="pageTitle.seperator" /> <s:text name="pageTitle.branding" /></title>
+
+	pluginnotfound.jsp
+	From:
+	<title> <s:text name="title.pluginNotFound"/></title>
+	To:
+	<title><s:text name="title.pluginNotFound" /> <s:text
+		name="pageTitle.seperator" /> <s:text name="pageTitle.branding" /></title>
+		
+		
+13) Added Update cookie policy to bottom-navigation-bar.jsp
+	 <a href="http://www.sanger.ac.uk/legal/cookiespolicy.html" target=_blank>Cookies policy</a>
+	 Also, the style sheet: WebContent/css/master.css
+	 .footer p {
+		margin-top: -20px;
+		font-size: 8pt;
+		font-style: italic;
+	}
+	
+	.footer p {
+		margin-top: -20px;
+		font-size: 10pt;
+		font-style: bold;
+	}
+
+14)	Added expcat.cql.Type.js
+	ARRAY_TEXT
+	
+	Updated expcat.cql.Operator.js :
+	STARTS_WITH,MATCHES
+	from: return type === TYPES.STRING || type === TYPES.ARRAY_STRING;
+	to: return type === TYPES.STRING || type === TYPES.ARRAY_STRING
+						|| type === TYPES.TEXT || type === TYPES.ARRAY_TEXT;
+	
+	Problem as TEXT fileds are not having colons. for example like:  '(.*(?i)(pfcrt).*)' matches GeneID
+	but just:  (.*(?i)(pfcrt).*) matches GeneID
+	to fix it: added following to expcat.cql.Value.js
+	translate method:
+	from: if(type === TYPES.STRING || type === TYPES.ARRAY_STRING)
+				return "'" + value + "'";
+				
+	to: if(type === TYPES.STRING || type === TYPES.ARRAY_STRING || type === TYPES.TEXT || type === TYPES.ARRAY_TEXT)
+				return "'" + value + "'";
+											
+15) 
+	To provide beadcrumb, top links, malariagen look like
+	CSS:MASTER.CSS FILE ADDED:
+	top_links,navigation,breadcrumb, UPDATED separator
+	
+	JSP:
+	top-navigation-bar-plugins.jsp
+	From:
+		<a href="http://www.malariagen.net"> <img class="malariaGenLogo"
+			src="<s:url value='/css/img/malariagen_logo.png'/>" /> </a>
+		
+		<div class="topLinks">
+			<a
+				href="<s:url action='catalogOverview'> <s:param name='selectedCatalogId'>${selectedCatalogId}</s:param> </s:url>">
+				&lt; Back to Catalog </a> | <a href="http://www.malariagen.net/data">
+				&lt;&lt; Back to Data </a>
+		</div>
+		
+		<div class="separator"></div>
+	To:
+		 <div class="top_links">
+			<a href="http://www.malariagen.net/search">Search</a> <span
+				class="delimiter">|</span><a href="http://www.malariagen.net/sitemap">Sitemap</a>
+			<span class="delimiter">|</span><a
+				href="http://www.malariagen.net/about/contact-us">Contact</a> <span
+				class="delimiter">|</span><a href="http://www.gmap.net/network">Login</a>
+		</div>
+		
+		<a href="http://www.malariagen.net"> <img class="malariaGenLogo"
+			src="<s:url value='/css/img/malariagen_logo.png'/>" /> </a>
+		
+		<div class="navigation">
+			<a href="http://www.malariagen.net/about">About</a> | <a
+				href="http://www.malariagen.net/community">Community</a> | <a
+				href="http://www.malariagen.net/projects">Projects</a> | <a
+				class="selected" href="http://www.malariagen.net/data">Data</a>
+		</div>
+		<div class="separator"></div>
+		<div class="breadcrumb">
+			<a href="http://www.malariagen.net">Home</a> &gt; <a
+				href="http://www.malariagen.net/data">Data</a> <a
+				href="<s:url action='frontPage'></s:url>"> &gt; Catalogs </a> <a
+				href="<s:url action='catalogOverview'> <s:param name='selectedCatalogId'>${selectedCatalogId}</s:param> </s:url>">
+				&gt; Catalog Overview </a> &gt; ${pluginTitle}
+		</div>
+    	     
+    	     
+    top-navigation-bar-catalog.jsp
+   	From:
+		 <a href="http://www.malariagen.net"> <img class="malariaGenLogo" src="<s:url value='/css/img/malariagen_logo.png'/>"/> </a>  		
+		 		
+		 <div class="topLinks">
+		 	<a href="<s:url action='frontPage'></s:url>"> 
+				&lt; Back to Catalogs 
+			</a> |	
+			<a href="http://www.malariagen.net/data"> &lt;&lt; Back to Data </a>	
+		 </div> 
+		 		
+		  <div class="separator"></div> 
+	To:
+		 <div class="top_links">
+			<a href="http://www.malariagen.net/search">Search</a> <span
+				class="delimiter">|</span><a href="http://www.malariagen.net/sitemap">Sitemap</a>
+			<span class="delimiter">|</span><a
+				href="http://www.malariagen.net/about/contact-us">Contact</a> <span
+				class="delimiter">|</span><a href="http://www.gmap.net/network">Login</a>
+		</div>
+		
+		<a href="http://www.malariagen.net"> <img class="malariaGenLogo"
+			src="<s:url value='/css/img/malariagen_logo.png'/>" /> </a>
+		
+		<div class="navigation">
+			<a href="http://www.malariagen.net/about">About</a> | <a
+				href="http://www.malariagen.net/community">Community</a> | <a
+				href="http://www.malariagen.net/projects">Projects</a> | <a
+				class="selected" href="http://www.malariagen.net/data">Data</a>
+		</div>
+		<div class="separator"></div>
+		<div class="breadcrumb">
+			<a href="http://www.malariagen.net">Home</a> &gt; <a
+				href="http://www.malariagen.net/data">Data</a> <a
+				href="<s:url action='frontPage'></s:url>"> &gt; Catalogs </a> &gt;
+				Catalog Overview
+		</div>
+ 
+ 	top-navigation-bar.jsp
+   	From:
+		 <a href="http://www.malariagen.net"> <img class="malariaGenLogo" src="<s:url value='/css/img/malariagen_logo.png'/>"/> </a>  		
+		 		
+		 <div class="topLinks">
+			<a href="http://www.malariagen.net/data"> &lt;&lt; Back to Data </a>	
+		 </div> 
+		 		
+		  <div class="separator"></div> 
+	To:
+		 <div class="top_links">
+			<a href="http://www.malariagen.net/search">Search</a> <span
+				class="delimiter">|</span><a href="http://www.malariagen.net/sitemap">Sitemap</a>
+			<span class="delimiter">|</span><a
+				href="http://www.malariagen.net/about/contact-us">Contact</a> <span
+				class="delimiter">|</span><a href="http://www.gmap.net/network">Login</a>
+		</div>
+		
+		<a href="http://www.malariagen.net"> <img class="malariaGenLogo"
+			src="<s:url value='/css/img/malariagen_logo.png'/>" /> </a>
+		
+		<div class="navigation">
+			<a href="http://www.malariagen.net/about">About</a> | <a
+				href="http://www.malariagen.net/community">Community</a> | <a
+				href="http://www.malariagen.net/projects">Projects</a> | <a
+				class="selected" href="http://www.malariagen.net/data">Data</a>
+		</div>
+		<div class="separator"></div>
+		<div class="breadcrumb">
+			<a href="http://www.malariagen.net">Home</a> &gt; Catalogs
+		</div>  
+ 16) Updated Renderer.js to update PlasmoDB links from www to old 
+ 
+ 17) got chromosome coordinate positions from magnus : 
+ 	/nfs/team112/refseq/plasmodium/falciparum/3D7_pm.fa.fai
+ 	
+18) Updated all plugin manifests to add 
+	From: 
+		"fileExportingFormat" : "TAB",
+	To:
+		"fileExportingFormat" : {
+								  format: "TAB",
+								  description: "tab-delimited"
+								}	
+	also updated to handle the change to
+	expcat.plugins.TextFileExporter.js 
+	check all occurences of exportFile

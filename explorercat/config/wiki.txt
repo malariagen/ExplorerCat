@@ -1,0 +1,51 @@
+Ant introduction
+
+Apache Ant is a Java library and command-line tool whose mission is to drive processes described in build files as targets and extension points dependent upon each other. The main known usage of Ant is the build of Java applications. Ant supplies a number of built-in tasks allowing to compile, assemble, test and run Java applications. Ant can also be used effectively to build non Java applications, for instance C or C++ applications. More generally, Ant can be used to pilot any type of process which can be described in terms of targets and tasks.
+For major details, please visit http://ant.apache.org/
+Ant: Focus on important things Below, you find a list of topics that you have to take care when you decide to read/write ant scripts.
+) Property tag
+) Define paths
+) Extend tasks
+Property tag The <property> task is used to set the Ant properties. The property value is immutable, once the value is set you cannot change it. To set a property to a specific value you use Name/value assignment. To import a file means import a list of properties. If two files define the same property name, the value of the property will be the first imported. Ant will warning you with a message about the attempt to redifine the property. Pay attention to define property with a properly name.
+Define paths You can specify PATH- and CLASSPATH-type references using both ":" and ";" as separator characters. Ant will convert the separator to the correct character of the current operating system. This is important to define where are your library or your jar and use it.
+Ant looks ANTRL3 resources inside $ANT_HOME. This path is different in Eclipse (using a plugin) and ANT command line. Eg. Eclipse (/Users/.../eclipse/plugins/org.apache.ant_1.7.1.v20100518-1145) ANT (/usr/local/ant)
+To avoid to force to add these jar files in both paths, you can define a directory and create a new path valid for both.
+Eg.
+ <path id="base.path"> 
+       <fileset dir="${basedir}/config/ant/extlib"> 
+               <include name="antlr-3.3-complete.jar" /> 
+               <include name="ant-antlr3.jar" /> 
+       </fileset> 
+ </path>
+ <whichresource property="antlr.in.classpath" class="org.antlr.Tool" classpathref="base.path" />   
+Similar explanation to allow Tomcat to be loaded properly.
+Extend tasks Extend a task is a simple job. Ant contains a set of tasks but you could need to extend or write a new task. It is really simple. An example of extend task is the directory config/ant/task/addon/src/ExtendProperties.java
+This task checks all properties and extends the property file.
+
+Ant Script: Build properties file for ExplorerCat
+
+The goal of this script is created or extended explorercat-global.properties,log4j.properties and explorercat-globaltest.properties We created two templates file.
+Basically, if explorercat-global.properties doesn't exist, ANT will create it. It is possible define myConfig.properties(developer configuration) or default.properties (server configuration) that contain the value of all properties. (TOKENS)
+The script checks
+*) Exist myConfig.properties or default.propeties
+*) All tokens are defined
+*) Substitute all tokens with the right values
+If explorercat-global.properties exists, the ANT scripts will extend it. First of all, it will check that all properties are defined (without change value) and will add the properties that are not present inside the original file.
+The file is in
+ config/build.xml that imports
+
+
+Automatic Deployment: use ANT
+
+The goal is deployed a Web Application written using Struts2.
+The script build.xml is inside config/deployment The script is divided in different tasks.
+The directory /config/commons contains all tasks. In this way we can reuse them for others ANT scripts or to call a single subtask.
+Below, the list of tasks that the script executes
+ Create/Extend properties file
+ Create from the Antlr3 grammars a list of java sources
+ Create javadoc
+ Compile java source
+ Junit test
+ Create a war file
+ 
+If you call build_with_tomcat.xml you can deploy inside Tomcat. The script undeploy the previous version and will deploy the last version. Note: it is important fills properly myConfig.properties and/or default.properties with some Tomcat tokens.

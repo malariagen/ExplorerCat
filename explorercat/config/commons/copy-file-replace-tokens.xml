@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<project default="createPropertiesFile" name="Copy template and change token" basedir="../..">
+	<description>Copy the template and change tokens</description>
+
+	<target name="init" unless="def_file">
+		<tstamp />
+		<!--Create tmp directory. -->
+		<mkdir dir="${config.ECTEMP}" />
+		<mkdir dir="${config.ECTEMP}/uploads" />
+		<mkdir dir="${config.ECTEMP}/catalogs" />
+		<mkdir dir="${config.ECTEMP}/downloads" />
+		<mkdir dir="${config.ECTEMP}/logs" />
+	</target>
+
+	<target name="copy" depends="init">
+		<!--Cp doesn't replace the file. We deleted before -->
+		<delete file="${basedir}/src/explorercat-global.properties" />
+		<delete file="${basedir}/src/log4j.properties" />
+		<copy file="${basedir}/src/resources/templates/explorercat-global.properties.template" tofile="${basedir}/src/explorercat-global.properties" />
+		<copy file="${basedir}/src/resources/templates/log4j.properties.template" tofile="${basedir}/src/log4j.properties" />
+	</target>
+
+
+	<target name="createPropertyTestFile" >
+		<delete file="${basedir}/src/explorercat-globaltest.properties" />
+		<copy file="${basedir}/src/explorercat-global.properties" tofile="${basedir}/src/explorercat-globaltest.properties" />
+		<replaceregexp file="${basedir}/src/explorercat-globaltest.properties" match="config.db.default.uri.*" replace="config.db.default.uri=java:comp/env/jdbc/explorercat-test-junit" byline="false" />
+	</target>
+		
+	<target name="replaceToken">
+		<!--Inside our file there are token and we replace with our value -->
+		<!--Attention with $path/$otherpath. -->
+		<replace file="${basedir}/src/explorercat-global.properties" token="$GENERIC_PATH" value="${config.GENERICPATH}" />
+		<replace file="${basedir}/src/explorercat-global.properties" token="$ECTEMP_PATH" value="${config.ECTEMP}" />
+			
+		<replace file="${basedir}/src/log4j.properties" token="$ECTEMP_PATH" value="${config.ECTEMP}" />
+	</target>
+	
+	<target name="createPropertiesFile" depends="copy">
+       <antcall target="replaceToken" inheritRefs="true" inheritAll="true" />
+	   <antcall target="createPropertyTestFile" inheritRefs="true" inheritAll="true" />
+	</target>
+
+	
+	
+</project>

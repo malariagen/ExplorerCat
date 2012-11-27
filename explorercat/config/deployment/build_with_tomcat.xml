@@ -1,0 +1,14 @@
+<project name="ExplorerCatDeployment" default="deploy" basedir="../.." >
+	<import file="../commons/antlr3-generate-grammar.xml" />
+	<import file="../build.xml" />   
+	<import file="../commons/generate-javadoc.xml" />
+	<import file="../commons/create-war-file.xml" />
+	<import file="../commons/tomcat-deployer-client.xml" />
+	<import file="../commons/compile-java-source.xml" />    
+	<import file="../commons/junit-test.xml" />  
+	
+	<target name="deploy" depends="Main,antlr3-default, create-javadoc, compile-source-code, junit-test, create-war, deployment-EC">
+		<echo message="==== DEPLOY WITH TOMCAT RESTART {line.separator}========================================" />
+	</target>
+
+</project>

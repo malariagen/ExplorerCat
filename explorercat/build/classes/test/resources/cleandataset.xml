@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <news />
+  <catalog_1_chromosome />
+  <catalog_1_chromosome_dictionary />
+  <catalog_1_chromosome_stats />
+  <catalog_1_entities />
+  <catalog_1_gene />
+  <catalog_1_gene_dictionary />
+  <catalog_1_snp />
+  <catalog_1_snp_dictionary />
+  <catalog_1_snp_stats />
+  <catalogs />
+  <plugin_hashes/>
+  <users />
+</dataset>

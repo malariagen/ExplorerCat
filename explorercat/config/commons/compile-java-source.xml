@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<project name="javacompile" default="compile-source-code" basedir="../..">
+
+    <property name="src_compile" location="${basedir}/src"/>
+    <property name="classes" location="${basedir}/build/classes"/>
+    <path id="project-classpath">
+    		<fileset dir="${basedir}/WebContent/WEB-INF/lib" includes="*.jar" />
+            <fileset dir="/Library/Tomcat/apache-tomcat-7.0.11" includes="**/*.jar" />
+    </path>
+   	<target name="compile-source-code" >
+   	    <delete dir="${basedir}/build/classes" />
+		<mkdir dir="${basedir}/build/classes" />
+            <!-- Compile the java code from ${src} into ${classes} -->
+            <javac srcdir="${src_compile}" destdir="${classes}"             
+                   target="1.6" listfiles="Yes" deprecation="Yes" classpathref="project-classpath" includeantruntime="false">
+                <compilerarg value="-Xlint:unchecked"/>
+            </javac>
+            <copy todir="${classes}">
+                <!--fileset dir="src" includes="**/*.xml,**/*.properties,**/*.txt,**/*.ico" /-->
+                <fileset dir="src" excludes="**/*.java" />
+            </copy>
+            <!-- We will need to copy non-java files manually -->    
+        </target>
+</project>

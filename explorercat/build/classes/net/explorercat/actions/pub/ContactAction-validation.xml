@@ -1,0 +1,52 @@
+<!DOCTYPE validators [ 
+<!ELEMENT validators (field|validator)+>
+
+<!ELEMENT field (field-validator+)>
+<!ATTLIST field
+	name CDATA #REQUIRED
+>
+
+<!ELEMENT field-validator (param*, message)>
+<!ATTLIST field-validator
+	type CDATA #REQUIRED
+    short-circuit (true|false) "false"
+>
+
+<!ELEMENT validator (param*, message)>
+<!ATTLIST validator
+	type CDATA #REQUIRED
+    short-circuit (true|false) "false"
+>
+
+<!ELEMENT param (#PCDATA)>
+<!ATTLIST param
+    name CDATA #REQUIRED
+>
+
+<!ELEMENT message (#PCDATA|param)*>
+<!ATTLIST message
+    key CDATA #IMPLIED
+>
+]>
+
+<validators>
+	<validator type="requiredstring">
+		<param name="fieldname">name</param>
+		<message>Name is required.</message>
+	</validator>
+	<validator type="requiredstring">
+		<param name="fieldname">email</param>
+		<message>Email address is required.</message>
+	</validator>
+	<validator type="email">
+		<param name="fieldname">email</param>
+		<message>Email address not valid.</message>
+	</validator>
+	<validator type="requiredstring">
+		<param name="fieldname">message</param>
+		<message>Please input your feedback.</message>
+	</validator>
+</validators>
+
+
+  

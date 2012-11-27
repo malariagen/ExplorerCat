@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT plugin ( meta-data, required-files, associated-catalogs, resources?, imports?, precalculated-queries?, javascript-configuration? ) >
+
+<!-- Describes the plug-in -->
+<!-- Added title which will be displayed on view instead of name, useful when titles are long -->
+<!ELEMENT meta-data ( name, title, description ) >
+<!ELEMENT name ( #PCDATA ) >
+<!ELEMENT title ( #PCDATA ) >
+<!ELEMENT description ( #PCDATA ) >
+
+<!-- The only required file is the JSP (can be HTML). 
+ 	 If no icon path is provided, a default icon will be used -->
+<!ELEMENT required-files ( jsp, icon? ) >
+<!ELEMENT jsp ( #PCDATA ) >
+<!ELEMENT icon ( #PCDATA ) >
+
+<!-- List of associated catalogs for which this plugin is available. This configuration enables a plugin available to either one or more or all of catalogs. 
+	[Database individual catalog Id's OR 'all' for all catalogs] [REQUIRED] -->
+<!ELEMENT associated-catalogs ( catalog-id+ ) >
+<!ELEMENT catalog-id ( #PCDATA ) >
+
+<!-- Resources (files or folders), that can be references by the JSP using the property tag-->
+<!ELEMENT resources ( resource+ ) >
+<!ELEMENT resource ( name, path ) >
+<!ELEMENT path ( #PCDATA ) >
+
+<!-- Files (css, js or plugin) to be imported.
+	 We can specify another plug-in to be imported. 
+	 This will have the effect of importing all the referenced plug-in imports and resources -->
+
+<!ELEMENT imports ( import+ ) >
+<!ELEMENT import ( type, path ) >
+<!ELEMENT type ( #PCDATA ) > 
+
+<!-- Precalculated queries -->
+<!ELEMENT precalculated-queries ( cql-precalculated-query+ ) >
+<!ELEMENT cql-precalculated-query ( catalogs, code ) >
+<!ELEMENT catalogs ( #PCDATA ) >
+<!ELEMENT code ( #PCDATA ) >
+
+<!-- Plug-in configuration: init function that will be called and configuration object that will be passed. 
+	 The configuration object can be specified for all/specific catalogs -->
+<!ELEMENT javascript-configuration ( init-function, json-configuration-object* ) >
+<!ELEMENT init-function ( #PCDATA ) >
+<!ELEMENT json-configuration-object ( catalogs, code ) >

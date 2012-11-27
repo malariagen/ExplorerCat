@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!--
+		############################################################################################################
+		Package for private API methods (can be accessed only by registered users / administrators).
+		############################################################################################################
+	-->
+
+	<package name="adminAPI" namespace="/admin/api" extends="api-default">
+
+		<!-- 
+			Deletes a piece of news from the system. 
+		-->
+
+		<action name="deletePieceOfNews" class="net.explorercat.actions.api.admin.ManageNewsMethod"
+			method="deletePieceOfNews">
+			<result name="success" type="json">
+				<param name="root">normalResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">errorResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+		<!-- 
+			Adds a piece of news.
+		-->
+
+		<action name="addPieceOfNews" class="net.explorercat.actions.api.admin.ManageNewsMethod"
+			method="addPieceOfNews">
+			<result name="success" type="json">
+				<param name="root">normalResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">errorResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+		<!-- 
+			Deploys a new catalog (CompactCat format).
+		-->
+
+		<action name="deployCatalog" class="net.explorercat.actions.api.admin.DeployCatalogMethod">
+			<result name="success" type="json">
+				<param name="root">normalResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">errorResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		
+		<!-- 
+			Updates the set of plug-ins registered in the system.
+		-->
+		
+		<action name="updatePlugins" class="net.explorercat.actions.api.admin.UpdatePluginsMethod">
+			<result name="success" type="json">
+				<param name="root">normalResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">errorResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+						
+		<!-- 
+			Marks a plug-in hash configuration as permanent.
+		-->
+						
+		<action name="makePluginConfigurationPermanent" class="net.explorercat.actions.api.admin.MakePluginConfigurationPermanentMethod">
+			<result name="success" type="json">
+				<param name="root">normalResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">errorResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+	</package>
+	
+</struts>

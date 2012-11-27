@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE plugin SYSTEM "../manifest.dtd">
+
+<plugin>
+
+	<!-- Metadata : Name and brief description [REQUIRED]-->
+
+	<meta-data>
+		<name> Download Resources </name>
+		<title>Download Resources</title>
+		<description> 
+			Download the complete catalog or different partitions of the data to work with it offline. 
+			We provide a file containing the whole dataset for snps, windows and top windows. Additional
+			partitions have been made taking into account the scoring methods used for the analysis. 
+			All the resources have been compressed as zip files.   						
+		 </description>
+	</meta-data>
+
+	<!-- Required files : view (jsp/html file) -->
+
+	<required-files>
+		<jsp>jsp/pluginview.jsp</jsp>
+		<icon>img/icon.jpg</icon>   
+	</required-files>
+
+
+	<!-- REQUIRED: List of associated catalogs for which this plugin is available. This configuration enables a plugin available to either one or more or all of catalogs. 
+		[Database individual catalog Id's OR 'all' for all catalogs] [REQUIRED] -->
+		<associated-catalogs>
+			<catalog-id>all</catalog-id>
+		</associated-catalogs>
+		
+	<!-- Paths that will be available to the view (if JSP file) by means of the <s:property> tag.	
+		 They can reference folders or files [OPTIONAL] -->
+
+	<resources>	
+		<resource>
+			<name>picture</name>
+			<path>img/picture.jpg</path>
+		</resource>		
+	</resources>	
+		
+	<!-- CSS and JS files that will be imported (all folders within the plug-in folder) [OPTIONAL] -->		
+		
+	<imports>
+		<import>
+			<type>css</type>
+			<path>css/style.css</path>
+		</import>		
+		<import>
+			<type>javascript</type>
+			<path>js/expcat.plugins.ResourceDownloader.js</path>
+		</import>						
+	</imports>
+	
+	<!-- Function that inits the plug-in and JSON configuration object that it will get.  [OPTIONAL] 
+		 Notice that other objects are passed automatically to the init function by the system 
+		 (connectors, contextURL and a map of the parameters passed to the action). 
+	-->		
+	
+	<javascript-configuration>	
+		<init-function>
+			expcat.plugins.ResourceDownloader.init
+		</init-function>
+
+		<json-configuration-object>
+			<catalogs>all</catalogs>			
+			<code>
+				{ "containerId" : "downloadLinks"}     
+			</code>			
+		</json-configuration-object>		
+	</javascript-configuration>
+	
+</plugin>

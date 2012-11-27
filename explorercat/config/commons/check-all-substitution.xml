@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<project default="check_if_all_vars_are_set" name="Check Properties File" basedir="../..">
+	<description>Check if there are tokens not defined</description>
+
+	<macrodef name="check-tokens">
+		<attribute name="file" />
+		<sequential>
+			<loadfile srcfile="@{file}" property="var.not.set">
+				<filterchain>
+					<linecontainsregexp>
+						<regexp pattern="\$" />
+					</linecontainsregexp>
+				</filterchain>
+			</loadfile>
+		</sequential>
+	</macrodef>
+
+	<target name="check_if_new_variable_not_set">
+		<check-tokens file="${basedir}/src/explorercat-global.properties" />
+		<check-tokens file="${basedir}/src/log4j.properties" />
+	</target>
+
+	<target name="check_if_all_vars_are_set" depends="check_if_new_variable_not_set" if="var.not.set">
+		<echo message="You have to define these tokens" />
+		<echo message="${var.not.set}" />
+		<fail message="Config variable not define. See the lists in the console" />
+	</target>
+</project>
+

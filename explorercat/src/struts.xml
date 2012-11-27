@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!--
+		############################################################################################################
+		Configuration parameters
+		############################################################################################################
+	-->
+
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.enable.SlashesInActionNames" value="true" />
+	<constant name="struts.mapper.alwaysSelectFullNamespace" value="false" />
+	<constant name="struts.url.includeParams" value="none" />
+	<constant name="struts.custom.i18n.resources" value="ApplicationResources, explorercat-skins" />
+	<constant name="struts.ui.theme" value="simple" />
+
+	<!--
+		############################################################################################################
+		Global results and exception mapping for actions
+		############################################################################################################
+	-->
+	
+	<package name="actions-default" extends="struts-default">
+	
+		<global-results>
+            <result name="exception">/jsp/pub/exception.jsp</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="exception"/>
+            <exception-mapping exception="java.lang.RuntimeException" result="exception"/>
+        </global-exception-mappings>
+	
+	</package>
+
+	<!--
+		############################################################################################################
+		Global results and exception mapping for API methods.
+		This section will be removed in production systems since any API method MUST check for unexpected exceptions
+		during execution in order to communicate the error to the user.
+		############################################################################################################
+	-->
+	
+	<package name="api-default" extends="json-default">
+	
+		<global-results>
+            <result name="exception">/jsp/pub/exception.jsp</result>
+			<result name="requestDenied">/jsp/pub/requestdenied.json</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="exception"/>
+            <exception-mapping exception="java.lang.RuntimeException" result="exception"/>
+        </global-exception-mappings>
+	
+	</package>
+	
+	<!--
+		############################################################################################################
+		Specific application modules
+		############################################################################################################
+	-->
+
+	<include file="resources/struts-config/public-actions.xml"/>
+	<include file="resources/struts-config/public-api.xml"/>					   				  
+	<include file="resources/struts-config/admin-api.xml"/>
+
+</struts>

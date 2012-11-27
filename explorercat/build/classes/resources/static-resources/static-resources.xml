@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE static-resources SYSTEM "static-resources.dtd">
+
+<static-resources>
+
+	<!-- PGV version 1 -->
+	<static-resource>
+		<catalogs> 1 </catalogs>
+		<name>snp_complete_pgv.csv.zip</name>
+		<type>.csv</type>
+		<uri>resources/1/snp_complete_pgv.csv.zip</uri>
+		<description>
+			The complete catalog of SNPs, including coordinates,
+			alleles, allele frequencies for all populations and references to
+			genes.
+			Size: 1.6M. 		
+		</description>
+	</static-resource>
+
+	<static-resource>
+		<catalogs> 1 </catalogs>
+		<name>snp_alleles_pgv.csv.zip</name>
+		<type>.csv</type>
+		<uri>resources/1/snp_alleles_pgv.csv.zip</uri>
+		<description>
+			Set of alleles for all the SNPs in the catalog, including
+			references to genes.
+			Size: 950K. 		
+		</description>
+	</static-resource>
+
+	<static-resource>
+		<catalogs> 1 </catalogs>
+		<name>snp_maf_pgv.csv.zip</name>
+		<type>.csv</type>
+		<uri>resources/1/snp_maf_pgv.csv.zip</uri>
+		<description>
+			Set of minor allele frequencies by population for all the
+			SNPs in the catalog, including references to genes.
+			Size: 831K. 		
+		</description>
+	</static-resource>
+
+	<static-resource>
+		<catalogs> 1 </catalogs>
+		<name>snp_daf_pgv.csv.zip</name>
+		<type>.csv</type>
+		<uri>resources/1/snp_daf_pgv.csv.zip</uri>
+		<description>
+			Set of derived allele frequencies by population for all
+			the SNPs in the catalog, including references to genes.
+			Size: 842K. 		
+		</description>
+	</static-resource>
+
+	<static-resource>
+		<catalogs> 1 </catalogs>
+		<name>snp_nraf_pgv.csv.zip</name>
+		<type>.csv</type>
+		<uri>resources/1/snp_nraf_pgv.csv.zip</uri>
+		<description>
+			Set of non-reference allele frequencies by population for
+			all the SNPs in the catalog, including references to genes.
+			Size:
+			838K. 		
+		</description>
+	</static-resource>
+
+
+	<!-- PGV version 2 -->
+
+	<static-resource>
+		<catalogs> 2 </catalogs>
+		<name>snp_complete_pgv.csv.zip</name>
+		<type>.csv</type>
+		<uri>resources/2/snp_complete_pgv.csv.zip</uri>
+		<description>
+			The complete catalog of SNPs, including coordinates,
+			alleles, allele frequencies for all populations and references to
+			genes.
+			Size: 6.8M. 		
+		</description>
+	</static-resource>
+
+	<static-resource>
+		<catalogs> 2 </catalogs>
+		<name>snp_alleles_pgv.csv.zip</name>
+		<type>.csv</type>
+		<uri>resources/2/snp_alleles_pgv.csv.zip</uri>
+		<description>
+			Set of alleles for all the SNPs in the catalog, including
+			references to genes.
+			Size: 3.8M.	
+		</description>
+	</static-resource>
+
+	<static-resource>
+		<catalogs> 2 </catalogs>
+		<name>snp_maf_pgv.csv.zip</name>
+		<type>.csv</type>
+		<uri>resources/2/snp_maf_pgv.csv.zip</uri>
+		<description>
+			Set of minor allele frequencies by population for all the
+			SNPs in the catalog, including references to genes.
+			Size: 3.4M. 		
+		</description>
+	</static-resource>
+
+	<static-resource>
+		<catalogs> 2 </catalogs>
+		<name>snp_daf_pgv.csv.zip</name>
+		<type>.csv</type>
+		<uri>resources/2/snp_daf_pgv.csv.zip</uri>
+		<description>
+			Set of derived allele frequencies by population for all
+			the SNPs in the catalog, including references to genes.
+			Size: 3.4M. 		
+		</description>
+	</static-resource>
+
+	<static-resource>
+		<catalogs> 2 </catalogs>
+		<name>snp_nraf_pgv.csv.zip</name>
+		<type>.csv</type>
+		<uri>resources/2/snp_nraf_pgv.csv.zip</uri>
+		<description>
+			Set of non-reference allele frequencies by population for
+			all the SNPs in the catalog, including references to genes.
+			Size:
+			3.4M.		
+		</description>
+	</static-resource>
+
+
+
+</static-resources>

@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!-- Eclipse  
+     ant-antlr3.jar, antlr-3.3-complete.jar, antlr-3.jar  (mandatory)
+     Pay attention to define properly basedir (eclipse/shell)
+ -->
+<project name="Parser and Lexer for EC" default="antlr3-default" basedir="../.." xmlns:antlr="antlib:org.apache.tools.ant.antlr">
+	<description>
+        This script generates Java source from grammar files. (ExplorerCat)
+    </description>
+	<property name="version" value="1.0" />
+	<echo message="basedir is set to = ${basedir}"  />
+	<property environment="env"/>
+	<echo message="ANT_HOME is set to = ${env.ANT_HOME}"  />
+
+	<!-- set global properties for this build -->
+	<property name="src_grammar" location="${basedir}/src/net/explorercat"/>
+	<property name="grammar" location="${basedir}/src/main/antlr3/net/explorercat"/>
+	<property name="package" value="" />
+
+	<!-- antlr options -->
+	<property name="profile" value="false" />
+	<property name="report" value="true" />
+	<property name="multithreaded" value="true" />
+    
+    <!-- Path settings used for classpath and execution --> 
+    <path id="base.path"> 
+            <fileset dir="${basedir}/config/ant/extlib"> 
+                    <include name="antlr-3.3-complete.jar" /> 
+                    <include name="ant-antlr3.jar" /> 
+            </fileset> 
+    </path> 
+    
+    <!-- define the tasks --> 
+    <taskdef uri="antlib:org.apache.tools.ant.antlr" 
+                    resource="org/apache/tools/ant/antlr/antlib.xml" 
+                    classpathref="base.path"/> 
+
+	<!-- Check if Antlr is in classpath -->
+	<target name="antlr_classpath">
+		<whichresource property="antlr.in.classpath" class="org.antlr.Tool" classpathref="base.path" />
+		<fail message="Antlr library not found via CLASSPATH">
+			<condition>
+				<not>
+					<isset property="antlr.in.classpath"/>
+				</not>
+			</condition>
+		</fail>
+		<echo>Antlr found via CLASSPATH</echo>
+	</target>
+
+	<macrodef name="antlr3">
+		<attribute name="grammar.name"/>
+		<attribute name="package" default="${package}"/>
+		<sequential>
+			<echo message="antlr ${grammar}/@{package}/@{grammar.name}" />
+			<antlr:ant-antlr3 
+                  target="${grammar}/@{package}/@{grammar.name}" 
+                  outputdirectory="${src_grammar}/@{package}"
+                  libdirectory="${src_grammar}/@{package}"
+                  multithreaded="${multithreaded}"
+                  report="${report}"
+                  profile="${profile}">
+				<classpath refid="base.path"/> 	
+			</antlr:ant-antlr3>
+		</sequential>
+	</macrodef>
+
+
+	<target name="CompactCatParser" depends="antlr_classpath">
+		<antlr3 grammar.name="CompactCatData.g"  package="compactcat/parser" />
+		<antlr3 grammar.name="CompactCatDictionary.g" package="compactcat/parser"/>
+		<antlr3 grammar.name="CompactCatDictionaryTreeWalker.g" package="compactcat/parser"/>
+	</target>
+
+	<target name="CQLParser">
+		<antlr3 grammar.name="CQL.g"  package="cql/parser" />
+		<antlr3 grammar.name="CQLTreeWalker.g" package="cql/parser" />
+	</target>
+
+	<target name="antlr3-default" depends=" CompactCatParser,CQLParser" description="Generate Java - antrl3">
+		<echo message="===== ANTLR3 ANT TASK COMPLETED =====" />
+	</target>
+
+</project>

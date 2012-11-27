@@ -1,0 +1,34 @@
+<project name="antlr-test" basedir="../.." default="main" xmlns:antlr="antlib:org.apache.tools.ant.antlr"> 
+        
+        <!-- properties for location of directories and files used in build -->
+    <property name="src" location="${basedir}/src/net/explorercat"/>
+	<property name="grammar" location="${basedir}/src/main/antlr3/net/explorercat"/>
+	<property name="package" value="" /> 
+
+        <property name="antlr.jar" value="/usr/local/ant/lib/antlr-3.3-complete.jar"/> 
+        
+        <!-- Path settings used for classpath and execution --> 
+        <path id="base.path"> 
+                <fileset dir="/usr/local/ant/lib"> 
+                        <include name="antlr-3.3-complete.jar" /> 
+                        <include name="ant-antlr3.jar" /> 
+                </fileset> 
+        </path> 
+        
+        <!-- define the tasks --> 
+        <taskdef uri="antlib:org.apache.tools.ant.antlr" 
+                        resource="org/apache/tools/ant/antlr/antlib.xml" 
+                        classpathref="base.path"/> 
+        
+        <target name="antlr"> 
+                <antlr:ant-antlr3 target="${basedir}/src/main/antlr3/net/explorercat/compactcat/parser/CompactCatData.g" outputdirectory="${basedir}/config"> 
+                    <classpath refid="base.path"/> 
+                </antlr:ant-antlr3> 
+        </target> 
+        
+        <target name="compile" depends="antlr"> 
+        <echo message="stamo qui" />
+        </target> 
+        
+        <target name="main" depends="compile" /> 
+</project> 

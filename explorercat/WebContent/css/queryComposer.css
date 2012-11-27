@@ -1,0 +1,222 @@
+
+/**
+ * CSS for Query Composer component
+ */
+
+.queryPanel, .delimiter .nestedPanel {
+	padding-left: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 660px;
+}
+
+.delimiter .nestedPanel {
+	padding-left: 30px;
+}
+.queryPanel .delimiter, .nestedPanel .nestedDelimiter {
+	width: 582px;
+	padding-left: 5px;
+	margin-left: 0px;
+	border-left: 3px solid silver;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+}
+.nestedPanel .nestedDelimiter {
+	margin-left: 0px;
+}
+.delimiter .conditionPanel, .delimiter .operatorPanel {
+	width: 582px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 1px;
+	margin-top: 8px;
+	background-color: #d8d8d8;
+	height: 50px;	
+	border: solid 2px silver;
+	box-shadow: 5px 5px 5px #e2e2e2;
+	-moz-box-shadow: 5px 5px 5px #e2e2e2;
+	-webkit-box-shadow: 5px 5px 5px #e2e2e2;
+}
+.delimiter .operatorPanel {
+	height: 35px;
+	background-color: white;
+	border: 0px;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+}
+.operatorPanel .operatorLine {
+	/*width: 50%;
+	 float: left; */
+	width: 280px;
+	margin-left: -5px;
+	margin-top: 16px;
+	height: 3px;
+	background-color: silver;
+	float: left;
+}
+.operatorPanel .operator {
+	width: 70px;
+	float: left;
+	padding-bottom: 4px;
+	padding-left: 2px;
+	border-left: solid 3px silver; 	
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+.operatorPanel .operator select {
+	font-size: 14px;
+	height: 28px;
+	margin-top: 4px;
+	margin-left: 3px;
+	width: 60px;
+	position: relative;
+}
+/**
+ * 	Condition elements.
+ */
+
+.nestButton, .unnestButton, .negationButton, .negationButtonDown, .removeButton, .helpButton {
+	width: 28px;
+	height: 28px;
+	float: left;
+	margin-top: 4px;
+	margin-left: 4px;
+	border-width: 1px;	
+}
+.helpButton {
+	float: right;
+	width: 20px;
+	height: 20px;
+	margin-top: 7px;
+	margin-left: 0px;
+	margin-right: 5px;
+	background: url("img/helpButton.jpg");
+}
+.helpButton:hover {
+	background: url("img/helpButtonHover.jpg");
+	cursor: pointer;
+}
+.negationButton {
+	background: url("img/negationButton.jpg");
+	cursor: pointer;
+}
+.negationButton:hover {
+	background: url("img/negationButtonHover.jpg");
+}
+
+.negationButtonDown {
+	background: url("img/negationButtonHover.jpg");
+	cursor: pointer;
+}
+
+.removeButton {
+	background: url("img/deleteButton.jpg");
+	cursor: pointer;
+}
+.removeButton:hover {
+	background: url("img/deleteButtonHover.jpg");
+}
+.nestButton, .unnestButton {
+	width: 24px;
+	height: 24px;
+}
+.nestButton {
+	background: url("img/nestButton.jpg");
+	cursor: pointer;
+}
+.nestButton:hover {
+	background: url("img/nestButtonHover.jpg");
+}
+.unnestButton {
+	background: url("img/unnestButton.jpg");
+	cursor: pointer;
+}
+.unnestButton:hover {
+	background: url("img/unnestButtonHover.jpg");
+}
+.conditionPanel .negation, .conditionPanel .property, .conditionPanel .operator, .conditionPanel .value, .conditionPanel .grouping {
+	float: left;
+	height: 35px;
+	margin-top: 7px;
+	margin-left: 7px;
+	border-right: 3px dotted #c0c0c0;
+}
+.conditionPanel .negation {
+	width: 45px
+}
+.conditionPanel .property {
+	width: 160px;
+	padding-left: 5px;
+	padding-right: 3px;
+}
+.property select {
+	font-size: 14px;
+	height: 28px;
+	margin-top: 3px;
+	width: 130px;
+}
+.conditionPanel .operator {
+	width: 110px;
+	padding-left: 5px;
+	padding-right: 3px;
+}
+.operator select {
+	font-size: 14px;
+	height: 28px;
+	margin-top: 3px;
+	width: 100px;
+}
+.conditionPanel .value {
+	width: 140px;
+	padding-left: 5px;
+	padding-right: 3px;
+}
+.value input {
+	font-size: 14px;
+	height: 20px;
+	margin-top: 3px;
+	margin-right: 5px;
+	width: 140px;
+}
+
+.value select {
+	height: 28px;
+	margin-top: 3px;	
+}
+
+.conditionPanel .grouping {
+	width: 50px;
+	padding-left: 5px;
+	padding-right: 0px;
+	border-right: none;
+}
+#cqlCode {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 40px;
+	margin-bottom: 10px;
+	text-align: left;
+	width: 400px;
+	font-size: 11px;
+	border: dotted 1px gray;
+	background-color: silver;
+	padding: 10px;
+	min-height: 20px;
+}
+
+.helpTooltip {
+	display: none;
+	font-weight: bold;
+	padding: 5px;
+	box-shadow: 2px 3px 4px #999;
+	-moz-box-shadow: 2px 3px 10px #999;
+	-webkit-box-shadow: 2px 3px 10px #999;
+	background-color: #ffa800;
+	max-width: 380px;
+	text-align: left;
+	font-size: 11px;
+}
+

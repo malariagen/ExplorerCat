@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT static-resources (static-resource*) >
+<!ELEMENT static-resource (catalogs, name, type, uri, description) >
+<!ELEMENT catalogs (#PCDATA) >
+<!ELEMENT name (#PCDATA) >
+<!ELEMENT type (#PCDATA) >
+<!ELEMENT uri (#PCDATA) >
+<!ELEMENT description (#PCDATA) >
+

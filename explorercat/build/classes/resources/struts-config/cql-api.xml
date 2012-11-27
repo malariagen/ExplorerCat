@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!--
+		############################################################################################################
+		Package for all the actions in charge of public API methods that are related with CQL queries.
+		They communicates via JSON objects.
+		############################################################################################################
+	-->
+
+	<package name="cqlAPI" namespace="/pub/api/cql" extends="api-default">
+
+		<!--
+			Setup: Creates a session for a CQL query.
+		-->
+
+		<action name="setupQuerySession" class="net.explorercat.actions.api.pub.cql.SetupQuerySessionMethod">
+			<result name="success" type="json">
+				<param name="root">normalResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">errorResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action> 
+
+		<!--
+			Data: Retrieves data from a CQL query result.
+		-->
+
+		<action name="getQueryResult" class="net.explorercat.actions.api.pub.cql.GetQueryResultMethod">
+			<result name="success" type="json">
+				<param name="root">normalResponse</param>
+				<param name="excludeProperties">resultData.*.rawValues</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">errorResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+		<!--
+			Sorting: Sorts the data of a CQL result using a property value.
+		-->
+
+		<action name="sortQueryResult" class="net.explorercat.actions.api.pub.cql.SortQueryResultMethod">
+			<result name="success" type="json">
+				<param name="root">normalResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">errorResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+		<!--
+			Release : Finishes the connection associated with a CQL query and its results. Note: Generated
+			resources (like CSV files) keep living after releasing the connection.
+		-->
+
+		<action name="releaseQuerySession" class="net.explorercat.actions.api.pub.cql.ReleaseQuerySessionMethod">
+			<result name="success" type="json">
+				<param name="root">normalResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">errorResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+		<!--
+			Generate text file: Dynamically generates a text file with the data of a CQL result.
+		-->
+
+		<action name="generateTextFileFromResult" class="net.explorercat.actions.api.pub.cql.GenerateTextFileFromResultMethod">
+			<result name="success" type="json">
+				<param name="root">normalResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">errorResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+	</package>
+	
+</struts>

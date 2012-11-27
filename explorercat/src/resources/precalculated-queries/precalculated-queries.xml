@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE precalculated-queries SYSTEM "precalculated-queries.dtd">
+
+<precalculated-queries>
+	<cql-precalculated-query>
+		<catalogs> all </catalogs>
+		<code>
+			SELECT FROM snp AS sys_snp_selection
+			WHERE FALSE; 
+		</code>
+	</cql-precalculated-query>
+</precalculated-queries>

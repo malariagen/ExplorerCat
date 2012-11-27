@@ -1,0 +1,275 @@
+<html>
+<head>
+<title>Plasmodium falciparum Genetic Variations (SNPs) &amp;
+	Allele Frequencies | www.malariagen.net</title>
+
+<!------------ Global Resources Start------------>
+
+
+
+
+
+<!--  Include here meta-tags and keywords -->
+
+<link rel="stylesheet" type="text/css" media="screen, projection"
+	href="/ExplorerCat-pgv/css/reset.css">
+
+<link rel="stylesheet" type="text/css" media="screen, projection"
+	href="/ExplorerCat-pgv/css/master.css">
+<!------------ Global Resources End------------>
+
+<!------------ Plug-in Global Resources Start------------>
+
+
+
+
+<script type="text/javascript" src=" /ExplorerCat-pgv/js/lib/jquery.js">
+	
+</script>
+
+
+<script type="text/javascript"
+	src="/ExplorerCat-pgv/js/lib/expcat-connectors.js">
+	
+</script>
+
+
+<link rel="stylesheet" type="text/css" media="screen, projection"
+	href="css/ext-all-scoped.css">
+
+
+<link rel="stylesheet" type="text/css" media="screen, projection"
+	href="/ExplorerCat-pgv/css/queryComposer.css">
+
+
+<link rel="stylesheet" type="text/css" media="screen, projection"
+	href="/ExplorerCat-pgv/css/jqueryui/jquery.ui.all.css">
+
+
+<script>
+	expcat.namespace("expcat.init.buildConnectors");
+
+	url = "/ExplorerCat-pgv/"
+
+	/**
+	 * Configures and creates the API connectors to communicate
+	 * with the explorercat server. 
+	 */
+
+	expcat.init.buildConnectors = function() {
+		var catalogId = 1;
+
+		var cqlConnectorConfiguration = {
+			catalogId : catalogId,
+			baseURL : url
+		};
+
+		var utilConnectorConfiguration = {
+			catalogId : catalogId,
+			baseURL : url
+		};
+
+		return {
+			cqlConnector : new expcat.cql.CQLConnector(
+					cqlConnectorConfiguration),
+			utilConnector : new expcat.cql.UtilConnector(
+					utilConnectorConfiguration)
+		};
+	};
+</script>
+
+
+
+
+<link rel="stylesheet" type="text/css"
+	href="/ExplorerCat-pgv/plugins/PopGenExplorer/css/style.css">
+
+
+
+
+<!------------ Plug-in Global Resources Start------------>
+
+
+</head>
+
+
+
+<body>
+
+	<!------------ Page Main Container Start------------>
+	<div class="container">
+
+		<!------------ Header Start------------>
+
+
+
+
+
+		<div class="header">
+			<div class="header-top">
+				<div
+					class="grid-left header-top-first-menu header-top-first-menu-prefix header-top-first-menu-suffix">
+					<a href="http://www.malariagen.net/search">Search</a> <span
+						class="delimiter">|</span><a
+						href="http://www.malariagen.net/sitemap">Sitemap</a> <span
+						class="delimiter">|</span><a
+						href="http://www.malariagen.net/about/contact-us">Contact</a>
+				</div>
+				<div class="clear">&nbsp;</div>
+				<div
+					class="grid-left header-top-middle-logo header-top-middle-logo-prefix header-top-middle-logo-suffix">
+					<a href="http://www.malariagen.net"> <img
+						src="/ExplorerCat-pgv/css/img/malariagen_logo.png"> </a>
+				</div>
+				<div class="clear">&nbsp;</div>
+				<div
+					class="grid-left grid header-top-second-menu header-top-second-menu-prefix header-top-second-menu-suffix">
+					<a href="http://www.malariagen.net/about">About</a> | <a
+						href="http://www.malariagen.net/community">Community</a> | <a
+						href="http://www.malariagen.net/projects">Projects</a> | <a
+						class="selected" href="http://www.malariagen.net/data">Data</a>
+				</div>
+				<div class="clear">&nbsp;</div>
+			</div>
+			<div class="header-middle"></div>
+			<div class="header-bottom">
+				<div class="header-bottom-breadcrumb">
+					<a href="http://www.malariagen.net">Home</a> &gt; <a
+						href="http://www.malariagen.net/data">Data</a> &gt; Plasmodium
+					falciparum Genetic Variations (SNPs) &amp; Allele Frequencies
+				</div>
+			</div>
+		</div>
+
+		<!------------ Header End------------>
+
+		<!------------ Page Content Container Start------------>
+		<div class="content">
+
+
+			<!------------ Plug-in Specific Resources Start------------>
+
+			<script type="text/javascript"
+				src="/ExplorerCat-pgv/js/lib/expcat-explorer-debug.js"></script>
+
+			<script type="text/javascript"
+				src="/ExplorerCat-pgv/plugins/PopGenExplorer/js/expcat.plugins.PopGenExplorer.js"></script>
+
+			<script type="text/javascript"
+				src="/ExplorerCat-pgv/js/lib/jquery-ui.custom.js"></script>
+
+			<script type="text/javascript"
+				src="/ExplorerCat-pgv/js/lib/jquery.cookie.js"></script>
+
+
+
+
+
+			<!------------ Plug-in Specific Resources End------------>
+
+			<!------------ Plug-in Specific Content Start------------>
+			<div class="plugin-container">
+				<div class="plugin-description">
+					<h2>
+						<i>Plasmodium falciparum</i> Genetic Variations (SNPs) &amp;
+						Allele Frequencies
+					</h2>
+					<p>
+						This page allows you to browse and query genetic variations
+						(single nucleotide polymorphisms - SNPs) found in <i>P.falciparum</i>
+						samples contributed from around the world by partners of the <a
+							href="http://www.malariagen.net/node/44" target="_blank">MalariaGEN
+							community project on the population genomics of <i>Plasmodium
+								falciparum</i> </a>, and compare frequencies of different variant forms
+						(alleles) between populations of parasites from different
+						geographical regions, eg., South East Asia and Africa.
+					</p>
+					<p>
+						For help using this page, see the <a
+							href="http://www.youtube.com/" target="_blank">video tutorial</a>
+						or read the <a href="http://www.youtube.com/" target="_blank">
+							user guide</a>
+					</p>
+				</div>
+
+
+				<div class="plugin-separator"></div>
+
+				<div class="plugin-steps">
+
+
+
+					<script>
+							// Here we define Ext for the first time
+							Ext = {
+								buildSettings : {
+									"scopeResetCSS" : true
+								}
+							};
+						</script>
+					<script type="text/javascript" src="js/lib/ext-all-debug.js"></script>
+
+				</div>
+			</div>
+			<!------------ Plug-in Specific Content End------------>
+		</div>
+		<!------------ Page Content Container End------------>
+
+		<!------------ Footer Start------------>
+
+
+
+
+
+
+		<div class="footer">
+			<div class="grid-left footer-top footer-top-prefix footer-top-suffix">
+			</div>
+			<div class="clear">&nbsp;</div>
+			<div class="footer-middle"></div>
+			<div class="footer-bottom">
+				<ul>
+					<li><a href="http://www.malariagen.net/sitemap" alt="Sitemap">Sitemap</a>
+					</li>
+					<li><a href="http://www.malariagen.net/search" alt="Search">Search</a>
+					</li>
+					<li><a href="http://www.sanger.ac.uk/legal/cookiespolicy.html"
+						alt="cookies policy" target="_blank">Cookies policy</a></li>
+				</ul>
+			</div>
+		</div>
+		<!------------ Footer End------------>
+
+	</div>
+	<!------------ Page Main Container End------------>
+
+
+
+	<!------------ Plug-in specific JS Start------------>
+	<script>
+
+	$(document).ready(function()
+	{
+		
+		var connectors = expcat.init.buildConnectors(); 
+		
+	 	
+		var actionParameterLookup = {'pluginName':'PopGen Explorer','selectedCatalogId':'1'};
+	
+		
+		var universalOptions = { "queryUIContainerId" : "query-delimiter", "addConditionButtonId" : "addConditionButton", "executeQueryButtonId" : "executeQueryButton", "exportFileContainerId" : "exportFileLink", "fileExportingFormat" : { format: "TAB", description: "tab-delimited" }, "entityType" : "snp" };
+	
+		
+		var localOptions = { "canExportData" : true, "tableColumns" : [ { name : "Chromosome", alias : "Chromosome"}, { name : "Position", alias : "Position" }, { name : "Gene", alias : "Gene"}, { name : "AminoAcid", alias : "Amino Acid"}, { name : "DAF_AFR", alias : "DAF Africa"}, { name : "DAF_SEA", alias : "DAF South-East Asia"}, { name : "DAF_PNG", alias : "DAF Papua New Guinea"}, { name : "NRAF_AFR", alias : "NRAF Africa"}, { name : "NRAF_SEA", alias : "NRAF South-East Asia"}, { name : "NRAF_PNG", alias : "NRAF Papua New Guinea"}, { name : "MAF_AFR", alias : "MAF Africa"}, { name : "MAF_SEA", alias : "MAF South-East Asia"}, { name : "MAF_PNG", alias : "MAF Papua New Guinea"}, { name : "Mutation", alias : "Mutation Type"}, { name : "RefAllele", alias : "Reference Allele"}, { name : "NonrefAllele", alias : "Non-ref Allele"}, { name : "DerivedAllele", alias : "DerivedAllele"}, { name : "AncestralAllele", alias : "Ancestral Allele"}, { name : "OutgroupAllele", alias : "Outgroup Allele"}, { name : "PrivateAllele", alias : "Private Allele"}, { name : "PrivatePopulation", alias : "Private Population"}, { name : "GeneID", alias : "Gene ID"}, { name : "GeneAliases", alias : "Gene Aliases"}, { name : "GeneDescription", alias : "Gene Description"}, { name : "xReference", alias : "Links"} ], "cellRenderers": { "redRenderer" : {name: "colorRenderer", startLimit: 0, endLimit: 0.5, startColor : [255,255,255], endColor : [255,73,73]}, "greenRenderer" : {name: "colorRenderer", startLimit: 0, endLimit: 1, startColor : [255,255,255], endColor : [73,255,73]}, "blueRenderer" : {name: "colorRenderer", startLimit: 0, endLimit: 1, startColor : [255,255,255], endColor : [73,73,255]}, "dashReplacer" : {name: 'stringReplacer', stringsToReplace: ['null','NaN'], replacementStrings: ['-','-']}, "tooltip": {name: 'tooltip'}, "arrayStripper": {name:'arrayStripper'}, "addLinks": {name:'addLinks', columns : ['xReference']} }, "columnOptions" : [ { columns : ["Chromosome", "Position", "Gene", "AminoAcid"], options : { sort : true, width : 100, hideable: false, draggable: false, renderers : [ 'dashReplacer' ], group: { hideable: false, draggable: false, name : 'SNP Location' } } }, { columns : ["DAF_AFR", "DAF_SEA", "DAF_PNG"], options : { sort : true, width : 120, hideable: false, draggable: false, renderers : [ 'dashReplacer', 'blueRenderer' ], group: { hideable: false, draggable: false, name : 'Derived Allele Frequency' } } }, { columns : ["NRAF_AFR", "NRAF_SEA", "NRAF_PNG"], options : { sort : true, width : 120, hideable: false, draggable: false, renderers : [ 'dashReplacer', 'greenRenderer' ], group: { hideable: false, draggable: false, name : 'Non-reference Allele Frequency' } } }, { columns : ["MAF_AFR", "MAF_SEA", "MAF_PNG"], options : { sort : true, width : 120, hideable: false, draggable: false, renderers : [ 'dashReplacer', 'redRenderer' ], group: { hideable: false, draggable: false, name : 'Minor Allele Frequency' } } }, { columns : ["Mutation", "RefAllele", "NonrefAllele", "DerivedAllele", "AncestralAllele", "OutgroupAllele","PrivateAllele","PrivatePopulation"], options : { sort : true, width : 100, hideable: false, draggable: false, renderers : [ 'dashReplacer'], group: { hideable: false, draggable: false, name : 'SNP Details' } } }, { columns : ["GeneID", "GeneAliases", "GeneDescription", "xReference"], options : { sort : true, width : 150, hideable: false, draggable: false, renderers : [ 'dashReplacer', 'addLinks' ], group: { hideable: false, draggable: false, name : 'Gene Information' } } } ], "UIOptions" : { "urlKeys" : { plugin : "pluginName", catalog : "selectedCatalogId", chromosome: "selectedChromosome", startPosition: "chromosomeStartPosition", endPosition: "chromosomeEndPosition" }, "tabs" : { id: "tabs", options: [ { actionDomIds: ["tab1_to_tab4","tab2_to_tab4","tab3_to_tab4"], tabToOpen : 3 } ] }, "dataRelease" : "dataReleaseSelect", "searchByPopulation" : { alleleFrequencies : { from: "alleleFrequencyFrom", to: "alleleFrequencyTo", options: [ { name : "MAF", alias : "Minor Allele Frequency" }, { name : "DAF", alias : "Derived Allele Frequency" }, { name : "NRAF", alias : "Non Reference Allele Frequency"} ] }, populations : { from: "populationFrom", to: "populationTo", options: [ { name : "AFR", alias : "Africa" }, { name : "SEA", alias : "South-East Asia" }, { name : "PNG", alias : "Papua New Guinea" } ] }, operators : { from: "operatorFrom", to: "operatorTo", options: [ { name : ">", alias : "greater than" }, { name : "<", alias : "less than" } ] }, inputValues : { from: "valueFrom", to: "valueTo", options: { minimum : 0, maximum : 1 } }, button : "searchByPopulation", cql : "SELECT FROM snp AS 'userQuery' WHERE ", defaultOptions : { alleleFrequencyFrom : "DAF", populationFrom : "SEA", operatorFrom :">", valueFrom: "0.9", alleleFrequencyTo : "DAF", populationTo : "AFR", operatorTo :"<", valueTo: "0.1" } }, "searchByGenes" : { inputValue: "geneInput", predefinedGenes: "preDefinedGenes", genes : [ { name : "pfcrt", alias : "pfcrt" }, { name : "pfmdr1", alias : "pfmdr1" }, { name : "dhfr", alias : "dhfr" }, { name : "dhfs", alias : "dhfs" }, { name : "csp", alias : "csp" }, { name : "trap", alias : "trap" }, { name : "ama1", alias : "ama1" }, { name : "msp1", alias : "msp1" }, { name : "eba175", alias : "eba175" }, { name : "rh5", alias : "rh5" }, { name : "pfs230", alias : "pfs230" } ], button : "searchByGene", cql : "SELECT FROM snp AS 'userQuery' WHERE '(.*(KeyWord).*)' matches GeneInfo", cqlReplace : "KeyWord" }, "searchByRegion" : { chromosomeId: "chromosome", inputValues : { from: "startPosition", to: "endPosition", defaultOptions : { minimum : 1, maximum : 10000000 } }, chromosomes : [ { name : "MAL1", alias : "MAL1", minimum : 1, maximum : 643292 }, { name : "MAL2", alias : "MAL2", minimum : 1, maximum : 947102 }, { name : "MAL3", alias : "MAL3", minimum : 1, maximum : 1060087 }, { name : "MAL4", alias : "MAL4", minimum : 1, maximum : 1204112 }, { name : "MAL5", alias : "MAL5", minimum : 1, maximum : 1343552 }, { name : "MAL6", alias : "MAL6", minimum : 1, maximum : 1418244 }, { name : "MAL7", alias : "MAL7", minimum : 1, maximum : 1501717 }, { name : "MAL8", alias : "MAL8", minimum : 1, maximum : 1419563 }, { name : "MAL9", alias : "MAL9", minimum : 1, maximum : 1541723 }, { name : "MAL10", alias : "MAL10", minimum : 1, maximum : 1687655 }, { name : "MAL11", alias : "MAL11", minimum : 1, maximum : 2038337 }, { name : "MAL12", alias : "MAL12", minimum : 1, maximum : 2271478 }, { name : "MAL13", alias : "MAL13", minimum : 1, maximum : 2895605 }, { name : "MAL14", alias : "MAL14", minimum : 1, maximum : 3291871 } ], button : "searchByRegion", cql : "SELECT FROM snp AS 'userQuery' WHERE " }, "showHideOptions" : { container : "showHideOptions", exclude : ["SNP Location"] } } };	
+		
+		
+		
+		               expcat.plugins.PopGenExplorer.init(connectors,"/ExplorerCat-pgv/", actionParameterLookup, universalOptions, localOptions);
+		
+	}); 
+
+</script>
+	<!------------ Plug-in specific JS End------------>
+
+</body>
+</html>

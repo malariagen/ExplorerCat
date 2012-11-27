@@ -1,0 +1,63 @@
+JavaScript Dependencies:
+=======================
+
+jQuery ui: http://jqueryui.com/download
+	UI dark theme updated fonts and colors and only tabs
+	JS:
+		All Core
+		All Effects 
+		Tabs
+
+		jquery-ui-1.8.21.custom.min.js
+		jquery-1.7.2.min.js
+	CSS:
+		jquery-ui-1.8.21.custom.css
+		images folder
+		
+jQuery Tools: http://flowplayer.org/tools/
+	js:
+		jquery.tools.min.js
+
+Also, jquery.cookie.js
+
+
+ExtJS: 4.0.2a
+	JS:
+		ext-all.js
+	CSS:	
+		ext-all.css
+
+jQuery UI Theme roller	: http://jqueryui.com/themeroller/
+Validation				: http://jigsaw.w3.org/css-validator/		
+
+
+selectMenu plugin
+------------------
+https://github.com/fnagel/jquery-ui
+
+
+
+Mods:
+ext-all.css : modifications
+ext-all.css -> ext-all-mod.css
+
+	Fonts from : tahoma, arial, verdana, sans-serif to : Verdana, Arial, Helvetica, sans-serif 
+ 	.x-body {
+		color: black;
+		font-size: 10px;
+		font-family: verdana, arial, helvetica, sans-serif
+	}
+	
+jquery-ui-1.8.21.custom.min.js MODIFICTAIONS:
+add :
+text-decoration: none;
+to:
+ui-state-hover
+ui-state-active
+
+
+
+
+ThemeRoller [Just change font, weight, header color]
+------------------
+http://jqueryui.com/themeroller/#ffDefault=verdana%2C+arial%2C+helvetica%2C+sans-serif&fwDefault=normal&fsDefault=10px&cornerRadius=4px&bgColorHeader=ffa400&bgTextureHeader=03_highlight_soft.png&bgImgOpacityHeader=75&borderColorHeader=aaaaaa&fcHeader=222222&iconColorHeader=222222&bgColorContent=ffffff&bgTextureContent=01_flat.png&bgImgOpacityContent=75&borderColorContent=aaaaaa&fcContent=222222&iconColorContent=222222&bgColorDefault=e6e6e6&bgTextureDefault=02_glass.png&bgImgOpacityDefault=75&borderColorDefault=d3d3d3&fcDefault=555555&iconColorDefault=888888&bgColorHover=dadada&bgTextureHover=02_glass.png&bgImgOpacityHover=75&borderColorHover=999999&fcHover=212121&iconColorHover=454545&bgColorActive=ffffff&bgTextureActive=02_glass.png&bgImgOpacityActive=65&borderColorActive=aaaaaa&fcActive=212121&iconColorActive=454545&bgColorHighlight=fbf9ee&bgTextureHighlight=02_glass.png&bgImgOpacityHighlight=55&borderColorHighlight=fcefa1&fcHighlight=363636&iconColorHighlight=2e83ff&bgColorError=fef1ec&bgTextureError=05_inset_soft.png&bgImgOpacityError=95&borderColorError=cd0a0a&fcError=cd0a0a&iconColorError=cd0a0a&bgColorOverlay=aaaaaa&bgTextureOverlay=01_flat.png&bgImgOpacityOverlay=0&opacityOverlay=30&bgColorShadow=aaaaaa&bgTextureShadow=01_flat.png&bgImgOpacityShadow=0&opacityShadow=30&thicknessShadow=8px&offsetTopShadow=-8px&offsetLeftShadow=-8px&cornerRadiusShadow=8px

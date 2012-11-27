@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+
+	<!--
+		############################################################################################################
+		Package for all the actions in charge of general public API methods.
+		############################################################################################################
+	-->
+
+	<package name="publicAPI" namespace="/pub/api" extends="api-default">
+
+		<!-- Stack of interceptors that includes a check for API calls. It will identify overuse and refuse
+			 overuse by external users -->
+		
+		<interceptors>
+			
+			<interceptor name="apiInterceptor" class="net.explorercat.interceptors.APIMethodCallInterceptor"/>
+			
+			<interceptor-stack name="apiStack">
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="apiInterceptor"/>
+			</interceptor-stack>
+			
+		</interceptors>
+		
+		<default-interceptor-ref name="apiStack"/>
+
+		<!--
+			Register a plugin configuration object (JSON), returning a hash key that can be used to recover it.
+		-->
+		
+		<action name="registerPluginConfiguration" class="net.explorercat.actions.api.pub.RegisterPluginConfigurationMethod">
+			<result name="success" type="json">
+				<param name="root">normalResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">errorResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		
+		<!--
+			Retrieves the plugin configuration object (JSON) associated with the passed hash key.
+		-->
+				
+		<action name="getPluginConfiguration" class="net.explorercat.actions.api.pub.GetPluginConfigurationMethod">
+			<result name="success" type="json">
+				<param name="root">normalResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">errorResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		
+		<!--
+			Retrieves the list of available catalogs.
+		-->
+				
+		<action name="getCatalogs" class="net.explorercat.actions.api.pub.GetCatalogsMethod">
+			<result name="success" type="json">
+				<param name="root">normalResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">errorResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+		<!--
+			Retrieves information about the specified catalog.
+		-->
+				
+		<action name="getCatalogInfo" class="net.explorercat.actions.api.pub.GetCatalogInfoMethod">
+			<result name="success" type="json">
+				<param name="root">normalResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">errorResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+		<!--
+			Retrieves the property dictionary of a given entity.
+		-->
+				
+		<action name="getEntityDictionary" class="net.explorercat.actions.api.pub.GetEntityDictionaryMethod">
+			<result name="success" type="json">
+				<param name="root">normalResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">errorResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		
+		<!--
+			Retrieves the list of static resources available for the specified catalog.
+		-->
+				
+		<action name="getStaticResources" class="net.explorercat.actions.api.pub.GetStaticResourcesMethod">
+			<result name="success" type="json">
+				<param name="root">normalResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">errorResponse</param>
+				<param name="callbackParameter">jsoncallback</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		
+	</package>
+	
+	<include file="resources/struts-config/cql-api.xml"/>	
+	
+</struts>	

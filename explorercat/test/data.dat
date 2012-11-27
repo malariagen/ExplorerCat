@@ -1,0 +1,114 @@
+
+{ "catalog" : {   
+	
+	"date" : "2011-06-23",
+	"version" : "test-1.0",
+	"name" : "Test Catalog",
+	"description" : "Test catalog for explorercat",	
+
+	"entities" : {
+
+		"chromosome" : [
+		[
+			1000,
+			"MAL1"
+		],
+		[
+			2000,
+			"MAL2"
+		],
+		[
+			3000,
+			"MAL3"
+		]],
+
+		"snp" : [
+		[
+			100,
+			"A",
+			"MAL1",
+			"GEN_1A"
+		],
+		[
+			101,
+			"T",
+			"MAL1",
+			"GEN_1B"
+		],
+		[
+			102,
+			"C",
+			"MAL1",
+			"GEN_1C"
+		],
+		[
+			200,
+			"A",
+			"MAL2",
+			"GEN_2A"
+		],
+		[
+			201,
+			"T",
+			"MAL2",
+			"GEN_2A"
+		],
+		[
+			202,
+			"C",
+			"MAL2",
+			"GEN_2A"
+		],
+		[
+			300,
+			"A",
+			"MAL3",
+			"GEN_3A"
+		],
+		[
+			301,
+			"T",
+			"MAL3",
+			"GEN_3B"
+		],
+		[
+			302,
+			"G",
+			"MAL3",
+			"GEN_3A"
+		]],
+		
+		"gene" : [
+		[
+			"GEN_1A",
+			100,
+			"MAL1"
+		],
+		[
+			"GEN_1B",
+			101,
+			"MAL1"
+		],
+		[
+			"GEN_1C",
+			102,
+			"MAL1"
+		],
+		[
+			"GEN_3A",
+			300,
+			"MAL3"
+		],
+		[
+			"GEN_3B",		
+			301,
+			"MAL3"
+		],
+		[
+			"GEN_2A",
+			200,
+			"MAL2"
+		]]		
+	}
+}}
+
